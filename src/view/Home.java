@@ -24,33 +24,112 @@ public class Home extends JPanel {
     private JButton tipos;
     private JButton portos;
     private JButton navios;
+    private JButton clientes;
+    private JButton listarCargas;
+    private JButton estadoCarga;
+    private JButton dadosIniciais;
+    private JButton dadosCarregar;
+    private JButton dadosSalvar;
+    private JButton frete;
     private JButton finalizar;
 
     public Home(Screen screen) {
-        super(new GridLayout(6,1,5,8));
-        this.setBorder(BorderFactory.createEmptyBorder(20,20,10,20));
+        super(new GridLayout(13,1,5,8));
+        this.setBorder(BorderFactory.createEmptyBorder(30,20,30,20));
         createUIComponents();
         this.screen = screen;
     }
 
     public void createUIComponents() {
-        cargas = new JButton("Cadastrar Carga");
-        this.add(cargas);
+        JPanel boxTitulo = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JLabel titulo = new JLabel("MENU");
+        titulo.setFont(new Font("Arial", Font.BOLD, 20));
+        boxTitulo.add(titulo);
+        this.add(boxTitulo);
 
-        tipos = new JButton("Cadastrar Tipo de Carga");
+        JPanel boxCarga = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        cargas = new JButton("Cadastrar nova Carga");
+        cargas.setPreferredSize(new Dimension(350,25));
+        cargas.addActionListener(new Events());
+        boxCarga.add(cargas);
+        this.add(boxCarga);
+
+        JPanel boxTipo = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        tipos = new JButton("Cadastrar novo Tipo de Carga");
+        tipos.setPreferredSize(new Dimension(350,25));
         tipos.addActionListener(new Events());
-        this.add(tipos);
+        boxTipo.add(tipos);
+        this.add(boxTipo);
 
-        portos = new JButton("Cadastrar Portos");
-        this.add(portos);
+        JPanel boxPorto = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        portos = new JButton("Cadastrar novo Porto");
+        portos.setPreferredSize(new Dimension(350,25));
+        portos.addActionListener(new Events());
+        boxPorto.add(portos);
+        this.add(boxPorto);
 
-        navios = new JButton("Cadastrar Navios");
-        this.add(portos);
+        JPanel boxNavio = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        navios = new JButton("Cadastrar novo Navio");
+        navios.setPreferredSize(new Dimension(350,25));
+        navios.addActionListener(new Events());
+        boxNavio.add(navios);
+        this.add(boxNavio);
 
+        JPanel boxCliente = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        clientes = new JButton("Cadastrar novo Cliente");
+        clientes.setPreferredSize(new Dimension(350,25));
+        clientes.addActionListener(new Events());
+        boxCliente.add(clientes);
+        this.add(boxCliente);
+
+        JPanel boxFrete = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        frete = new JButton("Fretar cargas");
+        frete.setPreferredSize(new Dimension(350,25));
+        frete.addActionListener(new Events());
+        boxFrete.add(frete);
+        this.add(boxFrete);
+
+        JPanel boxListarCarga = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        listarCargas = new JButton("Consultar todas as cargas");
+        listarCargas.setPreferredSize(new Dimension(350,25));
+        listarCargas.addActionListener(new Events());
+        boxListarCarga.add(listarCargas);
+        this.add(boxListarCarga);
+
+        JPanel boxEstadoCarga = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        estadoCarga = new JButton("Alterar situação de carga");
+        estadoCarga.setPreferredSize(new Dimension(350,25));
+        estadoCarga.addActionListener(new Events());
+        boxEstadoCarga.add(estadoCarga);
+        this.add(boxEstadoCarga);
+
+        JPanel boxDadosIniciais = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        dadosIniciais = new JButton("Carregar dados inicias");
+        dadosIniciais.setPreferredSize(new Dimension(350,25));
+        dadosIniciais.addActionListener(new Events());
+        boxDadosIniciais.add(dadosIniciais);
+        this.add(boxDadosIniciais);
+
+        JPanel boxDadosCarregar = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        dadosCarregar = new JButton("Carregar dados");
+        dadosCarregar.setPreferredSize(new Dimension(350,25));
+        dadosCarregar.addActionListener(new Events());
+        boxDadosCarregar.add(dadosCarregar);
+        this.add(boxDadosCarregar);
+
+        JPanel boxDadosSalvar = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        dadosSalvar = new JButton("Salvar dados");
+        dadosSalvar.setPreferredSize(new Dimension(350,25));
+        dadosSalvar.addActionListener(new Events());
+        boxDadosSalvar.add(dadosSalvar);
+        this.add(boxDadosSalvar);
+
+        JPanel boxFinalizar = new JPanel(new FlowLayout(FlowLayout.CENTER));
         finalizar = new JButton("Finalizar");
         finalizar.setForeground(Color.WHITE);
         finalizar.setBackground(new Color(126, 32, 32));
         finalizar.addActionListener(new Events());
-        this.add(finalizar);
+        boxFinalizar.add(finalizar);
+        this.add(boxFinalizar);
     }
 }

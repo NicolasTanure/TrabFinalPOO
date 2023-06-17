@@ -7,9 +7,9 @@ public class Screen extends JFrame {
     private JPanel tipo;
 
     public Screen() {
-        super("ACMEHandelsschifffahrtsgesellschaft");
+        super("Sistema ACMEHandelsschifffahrtsgesellschaft");
         this.pack();
-        this.setSize(550,600);
+        this.setSize(550,650);
         this.setLocationRelativeTo(null);
         home = new Home(this);
         this.setContentPane(home); // Tela padrão

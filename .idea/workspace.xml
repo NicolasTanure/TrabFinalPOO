@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18d7ec8c-2dfe-43ec-ae22-2339f877bbd5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/TrabFinalPOO.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TrabFinalPOO.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Carga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Carga.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Navio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Navio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Porto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Porto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/TipoCarga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TipoCarga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Screen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
