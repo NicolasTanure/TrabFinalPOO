@@ -6,8 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Home extends JPanel {
-    // Tnner class de tratamento de eventos dos JButtons
     class Events implements ActionListener {
+        /**
+         * Inner class que trata os eventos dos JButtons
+         * @param e evento recebido que é comparado com
+         * qual instância de JButton foi seu disparador
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == finalizar) {

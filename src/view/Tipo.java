@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Tipo extends JPanel {
-    // Tnner class de tratamento de eventos dos JButtons
     class Events implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

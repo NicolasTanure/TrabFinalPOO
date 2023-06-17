@@ -16,7 +16,7 @@ public class Screen extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
 
-        tipo = new Tipo(this);
+        tipo = new Tipo(this); // Painel recebe a tela PRINCIPAL (extends JFrame)
     }
 
     /**
@@ -27,7 +27,7 @@ public class Screen extends JFrame {
         switch(panel) {
             case 0:
                 this.setContentPane(home);
-                this.pack();
+                this.pack(); // Redimensiona a tela para receber todos componentes
                 this.setSize(550,600);
                 break;
             case 1:
