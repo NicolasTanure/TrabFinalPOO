@@ -1,3 +1,6 @@
+package NicolasE3;
+
+
 public class Carga {
 
 	private int identificador;

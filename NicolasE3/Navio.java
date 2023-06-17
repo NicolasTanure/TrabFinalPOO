@@ -1,3 +1,5 @@
+package NicolasE3;
+
 public class Navio {
     private String nome;
     private double velocidade;

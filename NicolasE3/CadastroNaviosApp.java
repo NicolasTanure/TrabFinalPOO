@@ -1,8 +1,13 @@
+package NicolasE3;
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+
+
 
 public class CadastroNaviosApp extends JFrame {
     private JTextField nomeTextField, velocidadeTextField, autonomiaTextField, custoTextField;
