@@ -22,6 +22,8 @@ public class Home extends JPanel {
             }
             else if (e.getSource() == navios) {
                 screen.changePanel(2);
+            } else if (e.getSource() == portos) {
+                screen.changePanel(3);
             }
         }
     }

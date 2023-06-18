@@ -6,6 +6,7 @@ public class Screen extends JFrame {
     private JPanel home;
     private JPanel tipo;
     private JPanel navio;
+    private JPanel porto;
 
     public Screen() {
         super("Sistema ACMEHandelsschifffahrtsgesellschaft");
@@ -19,6 +20,7 @@ public class Screen extends JFrame {
 
         tipo = new CadastroTipo(this); // Painel recebe a tela PRINCIPAL (extends JFrame)
         navio = new CadastroNavio(this);
+        porto = new CadastroPorto(this);
     }
 
     /**
@@ -39,6 +41,11 @@ public class Screen extends JFrame {
                 break;
             case 2:
                 this.setContentPane(navio);
+                this.pack();
+                this.setSize(550,600);
+                break;
+            case 3:
+                this.setContentPane(porto);
                 this.pack();
                 this.setSize(550,600);
                 break;
