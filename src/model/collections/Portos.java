@@ -32,15 +32,24 @@ public class Portos {
                 for (int i = 0; i < listaPorto.size(); i++) {
                     if (p.getId() < listaPorto.get(i).getId()) {
                         listaPorto.add(i, p);
+                        adicionaDistancia(p);
                         return true;
                     } else {
                         listaPorto.add(p);
+                        adicionaDistancia(p);
                         return true;
                     }
 
                 }
             }
             return false;
+        }
+    }
+
+    public void adicionaDistancia(Porto p) {
+        for(Porto porto : listaPorto) {
+            porto.getDistancia().put(p.getId(), 100);
+            p.getDistancia().put(porto.getId(), 100);
         }
     }
 }
