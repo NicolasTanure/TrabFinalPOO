@@ -1,4 +1,5 @@
 package src.view;
+
 import src.model.Navio;
 
 import javax.swing.*;
@@ -7,15 +8,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-
-
-public class ScreenNavio extends JPanel  {
+public class CadastroNavio extends JPanel  {
     private JTextField nomeTextField, velocidadeTextField, autonomiaTextField, custoTextField;
     private JTextArea mensagemTextArea;
     private JButton cadastrarButton, limparButton, finalizarButton, imprimirButton;
     private SortedMap<String, Navio> navios;
 
-    public ScreenNavio(Screen screen) {
+    public CadastroNavio(Screen screen) {
         super();
         setSize(500, 400);
         setLayout(new BorderLayout());
@@ -133,8 +132,6 @@ public class ScreenNavio extends JPanel  {
         mensagemTextArea.setText("");
     }
 
-    
-
     private void imprimirNavios() {
         for (Map.Entry<String, Navio> entry : navios.entrySet()) {
             String nome = entry.getKey();
@@ -150,6 +147,4 @@ public class ScreenNavio extends JPanel  {
     private void exibirMensagemErro(String mensagem) {
         JOptionPane.showMessageDialog(this, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
     }
-
-    
 }

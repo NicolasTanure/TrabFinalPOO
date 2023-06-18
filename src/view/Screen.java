@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Screen extends JFrame {
     private JPanel home;
     private JPanel tipo;
-    private JPanel ScreenNavio;
+    private JPanel navio;
 
     public Screen() {
         super("Sistema ACMEHandelsschifffahrtsgesellschaft");
@@ -17,8 +17,8 @@ public class Screen extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
 
-        tipo = new Tipo(this); // Painel recebe a tela PRINCIPAL (extends JFrame)
-        ScreenNavio = new ScreenNavio(this);
+        tipo = new CadastroTipo(this); // Painel recebe a tela PRINCIPAL (extends JFrame)
+        navio = new CadastroNavio(this);
     }
 
     /**
@@ -38,7 +38,7 @@ public class Screen extends JFrame {
                 this.setSize(550,600);
                 break;
             case 2:
-                this.setContentPane(ScreenNavio);
+                this.setContentPane(navio);
                 this.pack();
                 this.setSize(550,600);
                 break;
