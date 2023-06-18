@@ -6,9 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
-public class CadastroNavio extends JPanel  {
+public class CadastroNavio extends JPanel {
     private JTextField nomeTextField, velocidadeTextField, autonomiaTextField, custoTextField;
     private JTextArea mensagemTextArea;
     private JButton cadastrarButton, limparButton, finalizarButton, imprimirButton;
@@ -56,7 +58,13 @@ public class CadastroNavio extends JPanel  {
         });
         buttonPanel.add(limparButton);
 
-        
+        finalizarButton = new JButton("Finalizar");
+        finalizarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Adicione aqui a lógica para finalizar a janela ou executar alguma ação desejada
+            }
+        });
         buttonPanel.add(finalizarButton);
 
         imprimirButton = new JButton("Imprimir");
@@ -96,48 +104,28 @@ public class CadastroNavio extends JPanel  {
         try {
             velocidade = Double.parseDouble(velocidadeStr);
         } catch (NumberFormatException e) {
-            exibirMensagemErro("Valores inválidos para velocidade");
+            exibirMensagemErro("Valores inválidos para velocidade.");
             return;
         }
 
         try {
             autonomia = Double.parseDouble(autonomiaStr);
         } catch (NumberFormatException e) {
-            exibirMensagemErro("Valores inválidos para autonomia");
+            exibirMensagemErro("Valores inválidos para autonomia.");
             return;
         }
 
         try {
             custo = Double.parseDouble(custoStr);
         } catch (NumberFormatException e) {
-            exibirMensagemErro("Valores inválidos para custo");
+            exibirMensagemErro("Valores inválidos para custo por milha básico.");
             return;
         }
 
         Navio navio = new Navio(nome, velocidade, autonomia, custo);
         navios.put(nome, navio);
         exibirMensagem("Navio cadastrado com sucesso: " + navio.toString());
-
-        nomeTextField.setText("");
-        velocidadeTextField.setText("");
-        autonomiaTextField.setText("");
-        custoTextField.setText("");
-    }
-
-    private void limparCampos() {
-        nomeTextField.setText("");
-        velocidadeTextField.setText("");
-        autonomiaTextField.setText("");
-        custoTextField.setText("");
-        mensagemTextArea.setText("");
-    }
-
-    private void imprimirNavios() {
-        for (Map.Entry<String, Navio> entry : navios.entrySet()) {
-            String nome = entry.getKey();
-            Navio navio = entry.getValue();
-            exibirMensagem(nome + ": " + navio.toString());
-        }
+        limparCampos();
     }
 
     private void exibirMensagem(String mensagem) {
@@ -146,5 +134,19 @@ public class CadastroNavio extends JPanel  {
 
     private void exibirMensagemErro(String mensagem) {
         JOptionPane.showMessageDialog(this, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void limparCampos() {
+        nomeTextField.setText("");
+        velocidadeTextField.setText("");
+        autonomiaTextField.setText("");
+        custoTextField.setText("");
+    }
+
+    private void imprimirNavios() {
+        mensagemTextArea.setText("");
+        for (Map.Entry<String, Navio> entry : navios.entrySet()) {
+            mensagemTextArea.append(entry.getValue().toString() + "\n");
+        }
     }
 }

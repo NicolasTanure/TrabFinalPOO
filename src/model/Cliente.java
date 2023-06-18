@@ -5,8 +5,8 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Cliente {
-    private static Set<Integer> codigosUtilizados = new HashSet<>();
-    private static Set<String> emailsUtilizados = new HashSet<>();
+    private  Set<Integer> codigosUtilizados = new HashSet<>();
+    private  Set<String> emailsUtilizados = new HashSet<>();
     
     private int cod;
     private String nome;
