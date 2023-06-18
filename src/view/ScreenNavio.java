@@ -161,11 +161,5 @@ public class ScreenNavio extends JFrame {
         JOptionPane.showMessageDialog(this, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new ScreenNavio();
-            }
-        });
-    }
+    
 }
