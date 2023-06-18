@@ -2,9 +2,9 @@ package src.model.collections;
 
 import src.model.Carga;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class Estoque {
     // Inner class que reordena a fila de cargas
@@ -15,7 +15,7 @@ public class Estoque {
         }
     }
 
-    private Queue<Carga> cargas;
+    private LinkedList<Carga> cargas;
 
     public Estoque() {
         cargas = new LinkedList<>();
@@ -32,7 +32,10 @@ public class Estoque {
 
     public boolean adicionarCarga(Carga c) {
         if (!consultar(c.getIdentificador())) {
-            return cargas.add(c);
+            if (cargas.add(c)) {
+                Collections.sort(cargas, new OrderCarga());
+            }
+            return true;
         }
         return false;
     }
