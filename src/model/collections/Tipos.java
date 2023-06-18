@@ -13,8 +13,18 @@ public class Tipos {
         tipos = new ArrayList<>();
     }
 
+    public TipoCarga getTipo(int num) {
+        for (TipoCarga t : tipos) {
+            if (t.getNumero() == num) {
+                return t;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<TipoCarga> getTipos() {
-        return tipos;
+        ArrayList<TipoCarga> tipoClone = (ArrayList<TipoCarga>) tipos.clone();
+        return tipoClone;
     }
 
     public boolean adicionarTipo(TipoCarga tipo) {
@@ -36,9 +46,9 @@ public class Tipos {
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append("ID | Descrição\n");
-        s.append(">> PERECÍVEL: Origem | Validade Máx\n");
-        s.append(">> DURÁVEL: Setor| Material Principal | Imposto IPI\n");
+        s.append("ID;Descrição\n");
+        s.append("> PERECÍVEL: Origem;Validade Máx\n");
+        s.append("> DURÁVEL: Setor;Material Principal;Imposto IPI\n");
 
         for (TipoCarga t : tipos) {
             if (t instanceof Perecivel p) {
