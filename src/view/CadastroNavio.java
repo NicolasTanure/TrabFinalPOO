@@ -41,7 +41,17 @@ public class CadastroNavio extends JPanel {
         mensagemTextArea = new JTextArea();
         add(new JScrollPane(mensagemTextArea), BorderLayout.CENTER);
 
-        JPanel buttonPanel = new JPanel(new FlowLayout());
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        
+        voltarButton = new JButton("Voltar");
+        voltarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                screen.changePanel(0); // Troca para a tela anterior (número 0)
+            }
+        });
+        buttonPanel.add(voltarButton);
+
         cadastrarButton = new JButton("Cadastrar");
         cadastrarButton.addActionListener(new ActionListener() {
             @Override
@@ -68,15 +78,6 @@ public class CadastroNavio extends JPanel {
             }
         });
         buttonPanel.add(imprimirButton);
-
-        voltarButton = new JButton("Voltar");
-        voltarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                screen.changePanel(0); // Troca para a tela anterior (número 0)
-            }
-        });
-        buttonPanel.add(voltarButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
 
