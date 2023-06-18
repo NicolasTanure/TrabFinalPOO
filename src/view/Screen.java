@@ -4,10 +4,11 @@ import javax.swing.*;
 
 public class Screen extends JFrame {
     private JPanel home;
-    private JPanel tipo;
-    private JPanel navio;
-    private JPanel porto;
-    private JPanel cliente;
+    private CadastroTipo tipo;
+    private CadastroNavio navio;
+    private CadastroPorto porto;
+    private CadastroCliente cliente;
+    private JPanel carga;
 
     public Screen() {
         super("Sistema ACMEHandelsschifffahrtsgesellschaft");
@@ -23,6 +24,7 @@ public class Screen extends JFrame {
         navio = new CadastroNavio(this);
         porto = new CadastroPorto(this);
         cliente = new CadastroCliente(this);
+        carga = new CadastroCarga(this,tipo.getTipos(),porto.getPortos(),cliente.getClientes());
     }
 
     /**
@@ -56,6 +58,12 @@ public class Screen extends JFrame {
                 this.pack();
                 this.setSize(550,450);
                 break;
+            case 5:
+                this.setContentPane(carga);
+                this.pack();
+                this.setSize(550,600);
+                break;
+
         }
     }
 }

@@ -1,14 +1,18 @@
 package src.model;
 
 public enum EstadoCarga {
-    PENDENTE("Pendente"),
-    LOCADO("Locado"),
-    CANCELADO("Cancelado"),
-    FINALIZADO("Finalizado");
+    PENDENTE("PENDENTE"),
+    LOCADO("LOCADO"),
+    CANCELADO("CANCELADO"),
+    FINALIZADO("FINALIZADO");
 
     private String estado;
 
     EstadoCarga(String estado) {
         this.estado = estado;
+    }
+
+    public String getNome() {
+        return estado;
     }
 }

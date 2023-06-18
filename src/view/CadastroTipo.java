@@ -9,8 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class CadastroTipo extends JPanel {
     class Events implements ActionListener { // Inner class para tratamento de eventos
@@ -63,6 +61,10 @@ public class CadastroTipo extends JPanel {
         createUIComponents();
         this.screen = screen;
         this.tipo = this;
+    }
+
+    public Tipos getTipos() {
+        return tipos;
     }
 
     public void createUIComponents() {

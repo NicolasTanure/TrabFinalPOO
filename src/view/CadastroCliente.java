@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class CadastroCliente extends JPanel {
     class Events implements ActionListener { // Inner class para tratamento de eventos
@@ -57,6 +55,10 @@ public class CadastroCliente extends JPanel {
         createUIComponents();
         this.screen = screen;
         this.cliente = this;
+    }
+
+    public Clientela getClientes() {
+        return clientes;
     }
 
     public void createUIComponents() {
