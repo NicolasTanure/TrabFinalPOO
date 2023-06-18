@@ -1,9 +1,13 @@
 package src.model;
+import java.util.Dictionary;
+import java.util.Hashtable;
+
 
 public class Porto {
     private int id;
     private String nome;
     private String pais;
+    private Dictionary distancia = new Hashtable();
     
     public Porto(int id, String nome, String pais) {
         this.id = id;
@@ -23,6 +27,7 @@ public class Porto {
     public String getPais() {
         return pais;
     }
+    public Dictionary getDistancia() {return distancia;}
     
     // Setters
     public void setId(int id) {
