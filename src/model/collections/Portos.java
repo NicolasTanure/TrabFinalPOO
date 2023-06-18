@@ -47,6 +47,9 @@ public class Portos {
     }
 
     public void adicionaDistancia(Porto p) {
+        if (listaPorto.isEmpty()) {
+            return;
+        }
         for(Porto porto : listaPorto) {
             porto.getDistancia().put(p.getId(), 100);
             p.getDistancia().put(porto.getId(), 100);
