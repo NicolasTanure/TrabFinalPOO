@@ -1,4 +1,4 @@
-package NicolasE3;
+package src.model;
 
 public class Navio {
     private String nome;
