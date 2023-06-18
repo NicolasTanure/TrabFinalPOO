@@ -39,7 +39,7 @@ public class Screen extends JFrame {
             case 1:
                 this.setContentPane(tipo);
                 this.pack();
-                this.setSize(550,600);
+                this.setSize(550,500);
                 break;
             case 2:
                 this.setContentPane(navio);

@@ -174,14 +174,6 @@ public class CadastroTipo extends JPanel {
 
     // Método que cria instâncias de Tipo de carga
     public void createTipoCarga() throws NumberFormatException {
-        // Inner class para reordenação da lista de tipo de cargas
-        class OrderTipos implements Comparator<TipoCarga> {
-            @Override
-            public int compare(TipoCarga one, TipoCarga second) {
-                return one.getNumero() - second.getNumero();
-            }
-        }
-
         boolean create = false;
         String info = "";
 
@@ -203,7 +195,6 @@ public class CadastroTipo extends JPanel {
             TipoCarga tipoCarga = new Perecivel(tipo, origem, validade, desc);
             // Cadastra o tipo de carga
             if (tipos.adicionarTipo(tipoCarga)) {
-                Collections.sort(tipos.getTipos(), new OrderTipos()); // Reordena a lista
                 create = true;
             } else {
                 info = "Tipo de carga já existente!";
@@ -217,7 +208,6 @@ public class CadastroTipo extends JPanel {
             TipoCarga tipoCarga = new Duravel(tipo, setor, material, percentual, desc);
             // Cadastra o tipo de carga
             if (tipos.adicionarTipo(tipoCarga)) {
-                Collections.sort(tipos.getTipos(), new OrderTipos()); // Reordena a lista
                 create = true;
             } else {
                 info = "Tipo de carga já existente!";
@@ -230,10 +220,12 @@ public class CadastroTipo extends JPanel {
             headerInformation.setForeground(Color.GREEN);
             headerInformation.setText("CADASTRADO COM SUCESSO");
             information.setText("Novo tipo de carga adicionado");
+            System.out.println(tipos.toString());
         } else { // Senão foi
             headerInformation.setForeground(Color.RED);
             headerInformation.setText("FALHA NO CADASTRO");
             information.setText(info);
+            System.out.println(tipos.toString());
         }
     }
 }

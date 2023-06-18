@@ -2,9 +2,19 @@ package src.model.collections;
 
 import src.model.Cliente;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 public class Clientela {
+    // Inner class para reordenação da lista de clientes
+    class OrderClientes implements Comparator<Cliente> {
+        @Override
+        public int compare(Cliente one, Cliente second) {
+            return one.getCod() - second.getCod();
+        }
+    }
+
     private LinkedList<Cliente> clientes;
     private String erro;
 
@@ -25,14 +35,12 @@ public class Clientela {
         return null;
     }
 
-    public LinkedList<Cliente> getClientes() {
-        LinkedList<Cliente> clienteClone = (LinkedList<Cliente>) clientes.clone();
-        return clienteClone;
-    }
-
     public boolean adicionarCliente(Cliente c) {
         if (!consultar(c)) {
-            return clientes.add(c);
+            if (clientes.add(c)) {
+                Collections.sort(clientes, new OrderClientes());
+            }
+            return true;
         }
         return false;
     }

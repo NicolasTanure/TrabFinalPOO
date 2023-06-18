@@ -5,8 +5,18 @@ import src.model.Perecivel;
 import src.model.TipoCarga;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Tipos {
+    // Inner class para reordenação da lista de tipo de cargas
+    class OrderTipos implements Comparator<TipoCarga> {
+        @Override
+        public int compare(TipoCarga one, TipoCarga second) {
+            return one.getNumero() - second.getNumero();
+        }
+    }
+
     private ArrayList<TipoCarga> tipos;
 
     public Tipos() {
@@ -22,14 +32,12 @@ public class Tipos {
         return null;
     }
 
-    public ArrayList<TipoCarga> getTipos() {
-        ArrayList<TipoCarga> tipoClone = (ArrayList<TipoCarga>) tipos.clone();
-        return tipoClone;
-    }
-
     public boolean adicionarTipo(TipoCarga tipo) {
         if (!consultar(tipo.getNumero())) {
-            return tipos.add(tipo);
+            if (tipos.add(tipo)) {
+                Collections.sort(tipos, new OrderTipos());
+            }
+            return true;
         }
         return false;
     }

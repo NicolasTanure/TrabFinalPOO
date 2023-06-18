@@ -151,14 +151,6 @@ public class CadastroCliente extends JPanel {
     }
 
     public void createCliente() throws NumberFormatException {
-        // Inner class para reordenação da lista de clientes
-        class OrderClientes implements Comparator<Cliente> {
-            @Override
-            public int compare(Cliente one, Cliente second) {
-                return one.getCod() - second.getCod();
-            }
-        }
-
         boolean create = false;
         String info = "";
 
@@ -173,7 +165,6 @@ public class CadastroCliente extends JPanel {
             Cliente cliente = new Cliente(cod,nome,email);
 
             if (clientes.adicionarCliente(cliente)) {
-                Collections.sort(clientes.getClientes(), new OrderClientes());
                 create = true;
             } else {
                 info = "ERRO: " + clientes.getErro();
