@@ -1,5 +1,5 @@
-package NicolasE3;
-
+package src.view;
+import src.model.Navio;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,13 +9,13 @@ import java.util.*;
 
 
 
-public class CadastroNaviosApp extends JFrame {
+public class ScreenNavio extends JFrame {
     private JTextField nomeTextField, velocidadeTextField, autonomiaTextField, custoTextField;
     private JTextArea mensagemTextArea;
     private JButton cadastrarButton, limparButton, finalizarButton, imprimirButton;
     private SortedMap<String, Navio> navios;
 
-    public CadastroNaviosApp() {
+    public ScreenNavio() {
         super();
         setTitle("Cadastro de Navios");
         setSize(500, 400);
@@ -164,7 +164,7 @@ public class CadastroNaviosApp extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new CadastroNaviosApp();
+                new ScreenNavio();
             }
         });
     }
