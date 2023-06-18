@@ -9,17 +9,15 @@ import java.util.*;
 
 
 
-public class ScreenNavio extends JFrame {
+public class ScreenNavio extends JPanel  {
     private JTextField nomeTextField, velocidadeTextField, autonomiaTextField, custoTextField;
     private JTextArea mensagemTextArea;
     private JButton cadastrarButton, limparButton, finalizarButton, imprimirButton;
     private SortedMap<String, Navio> navios;
 
-    public ScreenNavio() {
+    public ScreenNavio(Screen screen) {
         super();
-        setTitle("Cadastro de Navios");
         setSize(500, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         JPanel inputPanel = new JPanel(new GridLayout(5, 2));
@@ -59,13 +57,7 @@ public class ScreenNavio extends JFrame {
         });
         buttonPanel.add(limparButton);
 
-        finalizarButton = new JButton("Finalizar");
-        finalizarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                finalizar();
-            }
-        });
+        
         buttonPanel.add(finalizarButton);
 
         imprimirButton = new JButton("Imprimir");
@@ -141,9 +133,7 @@ public class ScreenNavio extends JFrame {
         mensagemTextArea.setText("");
     }
 
-    private void finalizar() {
-        dispose();
-    }
+    
 
     private void imprimirNavios() {
         for (Map.Entry<String, Navio> entry : navios.entrySet()) {
