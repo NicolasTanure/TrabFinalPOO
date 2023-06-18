@@ -25,6 +25,11 @@ public class Clientela {
         return null;
     }
 
+    public LinkedList<Cliente> getClientes() {
+        LinkedList<Cliente> clienteClone = (LinkedList<Cliente>) clientes.clone();
+        return clienteClone;
+    }
+
     public boolean adicionarCliente(Cliente c) {
         if (!consultar(c)) {
             return clientes.add(c);

@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class CadastroCliente extends JPanel {
@@ -43,12 +44,14 @@ public class CadastroCliente extends JPanel {
     private JButton confirmar;
     private JButton limpar;
     private JButton voltar;
-
+    private JTextField textCodigo;
+    private JTextField textNome;
+    private JTextField textEmail;
     private JLabel headerInformation;
     private JLabel information;
 
     public CadastroCliente(Screen screen) {
-        super(new GridLayout(5,1));
+        super(new GridLayout(7,1));
         this.setBorder(BorderFactory.createEmptyBorder(20,20,10,20));
         clientes = new Clientela();
         createUIComponents();
@@ -96,6 +99,25 @@ public class CadastroCliente extends JPanel {
         this.add(painel);
 
         // Áreas de texto linha 1
+        JPanel painelText1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        painelText1.add(new JLabel("Código: "));
+        textCodigo = new JTextField(17);
+        painelText1.add(textCodigo);
+        this.add(painelText1);
+
+        // Áreas de texto linha 2
+        JPanel painelText2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        painelText2.add(new JLabel("Nome: "));
+        textNome = new JTextField(18);
+        painelText2.add(textNome);
+        this.add(painelText2);
+
+        // Áreas de texto linha 3
+        JPanel painelText3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        painelText3.add(new JLabel("Email: "));
+        textEmail = new JTextField(18);
+        painelText3.add(textEmail);
+        this.add(painelText3);
     }
 
     public void createInformationFields() {
@@ -139,5 +161,35 @@ public class CadastroCliente extends JPanel {
 
         boolean create = false;
         String info = "";
+
+        String codigo = textCodigo.getText();
+        String nome = textNome.getText();
+        String email = textEmail.getText();
+
+
+        if (!codigo.isEmpty() && !nome.isEmpty() && !email.isEmpty()) {
+            int cod = Integer.parseInt(codigo);
+
+            Cliente cliente = new Cliente(cod,nome,email);
+
+            if (clientes.adicionarCliente(cliente)) {
+                Collections.sort(clientes.getClientes(), new OrderClientes());
+                create = true;
+            } else {
+                info = "ERRO: " + clientes.getErro();
+            }
+        } else {
+            info = "ERRO: Campos incompletos!";
+        }
+
+        if (create) { // Se foi realizado o cadastro
+            headerInformation.setForeground(Color.GREEN);
+            headerInformation.setText("CADASTRADO COM SUCESSO");
+            information.setText("Novo cliente adicionado");
+        } else { // Senão foi
+            headerInformation.setForeground(Color.RED);
+            headerInformation.setText("FALHA NO CADASTRO");
+            information.setText(info);
+        }
     }
 }

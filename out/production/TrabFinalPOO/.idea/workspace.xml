@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18d7ec8c-2dfe-43ec-ae22-2339f877bbd5" name="Changes" comment="">
+    <list default="true" id="18d7ec8c-2dfe-43ec-ae22-2339f877bbd5" name="Changes" comment="dicionario das distancias adicionado">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/collections/Clientela.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/collections/Clientela.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CadastroCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CadastroCliente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -37,7 +40,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/sofiasartori/Desktop/POO-TFinal/TrabFinalPOO",
+    "last_opened_file_path": "C:/Users/bianc/OneDrive/Documentos/TrabFinalPOO",
     "settings.editor.selected.configurable": "terminal"
   }
 }]]></component>
@@ -55,7 +58,20 @@
       <option name="presentableId" value="Default" />
       <updated>1686445303185</updated>
     </task>
+    <task id="LOCAL-00001" summary="T3 da sofia adicionado">
+      <created>1687114621523</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687114621523</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="T3 da sofia adicionado" />
+    <MESSAGE value="dicionario das distancias adicionado" />
+    <option name="LAST_COMMIT_MESSAGE" value="dicionario das distancias adicionado" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
