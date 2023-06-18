@@ -13,11 +13,13 @@ import java.util.TreeMap;
 public class CadastroNavio extends JPanel {
     private JTextField nomeTextField, velocidadeTextField, autonomiaTextField, custoTextField;
     private JTextArea mensagemTextArea;
-    private JButton cadastrarButton, limparButton, finalizarButton, imprimirButton;
+    private JButton cadastrarButton, limparButton, imprimirButton, voltarButton;
     private SortedMap<String, Navio> navios;
+    private Screen screen;
 
     public CadastroNavio(Screen screen) {
         super();
+        this.screen = screen;
         setSize(500, 400);
         setLayout(new BorderLayout());
 
@@ -58,15 +60,6 @@ public class CadastroNavio extends JPanel {
         });
         buttonPanel.add(limparButton);
 
-        finalizarButton = new JButton("Finalizar");
-        finalizarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Adicione aqui a lógica para finalizar a janela ou executar alguma ação desejada
-            }
-        });
-        buttonPanel.add(finalizarButton);
-
         imprimirButton = new JButton("Imprimir");
         imprimirButton.addActionListener(new ActionListener() {
             @Override
@@ -75,6 +68,15 @@ public class CadastroNavio extends JPanel {
             }
         });
         buttonPanel.add(imprimirButton);
+
+        voltarButton = new JButton("Voltar");
+        voltarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                screen.changePanel(0); // Troca para a tela anterior (número 0)
+            }
+        });
+        buttonPanel.add(voltarButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
 

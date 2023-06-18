@@ -20,6 +20,9 @@ public class Home extends JPanel {
             } else if (e.getSource() == tipos) {
                 screen.changePanel(1);
             }
+            else if (e.getSource() == navios) {
+                screen.changePanel(2);
+            }
         }
     }
 

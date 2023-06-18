@@ -32,12 +32,12 @@ public class Screen extends JFrame {
                 this.pack(); // Redimensiona a tela para receber todos componentes
                 this.setSize(550,600);
                 break;
-            case 2:
+            case 1:
                 this.setContentPane(tipo);
                 this.pack();
                 this.setSize(550,600);
                 break;
-            case 1:
+            case 2:
                 this.setContentPane(navio);
                 this.pack();
                 this.setSize(550,600);
