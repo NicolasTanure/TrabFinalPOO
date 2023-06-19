@@ -74,14 +74,14 @@ public class Carga {
 
 	@Override
 	public String toString() {
-		return "ID:" + identificador + ";"
+		return "CARGA: ID:" + identificador + ";"
 				+ "Peso:" + peso + ";"
 				+ "Valor:" +valorDeclarado + ";"
-				+ "Tempo" + tempoMaximo + ";"
+				+ "Tempo:" + tempoMaximo + ";"
 				+ "Situação:" + estado.getNome() + "\n"
-				+ ">TIPO: " + getTipoCarga().toString() + "\n"
-				+ ">CLIENTE: " + getCliente().toString() + "\n"
-				+ ">ORIGEM: " + getOrigem().toString() + "\n"
-				+ ">DESTINO: " + getDestino().toString();
+				+ " | TIPO: " + getTipoCarga().toString() + "\n"
+				+ " | CLIENTE: " + getCliente().toString() + "\n"
+				+ " | ORIGEM: " + getOrigem().toString() + "\n"
+				+ " | DESTINO: " + getDestino().toString();
 	}
 }

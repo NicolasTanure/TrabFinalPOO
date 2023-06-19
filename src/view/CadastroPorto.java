@@ -13,8 +13,8 @@ public class CadastroPorto extends JPanel {
     private JTextField idField;
     private JTextField nomeField;
     private JTextField paisField;
-    private JButton botao;
-    private JButton limparCampos;
+    private JButton confirmar;
+    private JButton limpar;
     private JButton voltar;
     private JLabel mensagemOK;
     private JLabel mensagemErro;
@@ -25,16 +25,19 @@ public class CadastroPorto extends JPanel {
     public CadastroPorto(Screen screen) {
         super();
         this.screen = screen;
+        this.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
 
-        JLabel formTitle = new JLabel("Digite os dados do porto que deseja cadastrar");
-        formTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        JPanel title = new JPanel(new FlowLayout());
+        JLabel header = new JLabel("CADASTRO DE PORTO");
+        header.setFont(new Font("Arial", Font.BOLD, 16));
+        title.add(header);
 
-        GridLayout gridCampos = new GridLayout(3, 2);
+        GridLayout gridCampos = new GridLayout(3, 2,4,5);
         JPanel painelCampos = new JPanel(gridCampos);
-        JLabel idLabel = new JLabel("ID");
-        JLabel nomeLabel = new JLabel("Nome");
-        JLabel paisLabel = new JLabel("Pais");
-        areaTexto = new JLabel("Mensagens ao Usuário:");
+        JLabel idLabel = new JLabel("ID:");
+        JLabel nomeLabel = new JLabel("Nome:");
+        JLabel paisLabel = new JLabel("País:");
+        areaTexto = new JLabel("Informações:");
         idField = new JTextField();
         nomeField = new JTextField();
         paisField = new JTextField();
@@ -45,14 +48,18 @@ public class CadastroPorto extends JPanel {
         painelCampos.add(paisLabel);
         painelCampos.add(paisField);
 
-        botao = new JButton("Cadastrar");
-        limparCampos = new JButton("Limpar todos os Campos");
+        confirmar = new JButton("Confirmar");
+        confirmar.setForeground(Color.WHITE);
+        confirmar.setBackground(new Color(70, 136, 36));
+        limpar = new JButton("Limpar");
         voltar = new JButton("Voltar");
+        voltar.setForeground(Color.WHITE);
+        voltar.setBackground(new Color(126, 32, 32));
         mensagemOK = new JLabel();
         mensagemErro = new JLabel();
 
-        // Tratamento de evento do botao
-        botao.addActionListener(new ActionListener() {
+        // Tratamento de evento dos botões
+        confirmar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mensagemErro.setText("");
@@ -85,7 +92,7 @@ public class CadastroPorto extends JPanel {
             }
         });
 
-        limparCampos.addActionListener(new ActionListener() {
+        limpar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 idField.setText("");
@@ -105,27 +112,25 @@ public class CadastroPorto extends JPanel {
 
 
 
-        GridLayout grid = new GridLayout(5, 1);
+        GridLayout grid = new GridLayout(5, 1,0,8);
         JPanel painel = new JPanel(grid);
-        painel.add(formTitle);
+        painel.add(title);
         painel.add(painelCampos);
-        FlowLayout botaoLayout = new FlowLayout(FlowLayout.RIGHT);
-        FlowLayout areaTextoLayout = new FlowLayout(FlowLayout.LEADING);
-        JPanel botaoPainel = new JPanel(botaoLayout);
-        JPanel areaTextoPainel = new JPanel(areaTextoLayout);
-        botaoPainel.add(voltar);
-        botaoPainel.add(limparCampos);
-        botaoPainel.add(botao);
+
+        JPanel confirmarPainel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        confirmarPainel.add(voltar);
+        confirmarPainel.add(limpar);
+        confirmarPainel.add(confirmar);
+        painel.add(confirmarPainel);
+
+        painel.add(areaTexto);
+
+        JPanel areaTextoPainel = new JPanel(new FlowLayout(FlowLayout.LEADING));
         areaTextoPainel.add(mensagemErro);
         areaTextoPainel.add(mensagemOK);
-        painel.add(botaoPainel);
-        painel.add(areaTexto);
         painel.add(areaTextoPainel);
-        painel.setBorder(BorderFactory.createEmptyBorder(30,100,30,100));
 
         this.add(painel);
-        this.setSize(650, 400);
-        this.setVisible(true);
     }
 
     public Portos getPortos() {

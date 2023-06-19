@@ -11,9 +11,15 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class CadastroNavio extends JPanel {
-    private JTextField nomeTextField, velocidadeTextField, autonomiaTextField, custoTextField;
+    private JTextField nomeTextField;
+    private JTextField velocidadeTextField;
+    private JTextField autonomiaTextField;
+    private JTextField custoTextField;
     private JTextArea mensagemTextArea;
-    private JButton cadastrarButton, limparButton, imprimirButton, voltarButton;
+    private JButton confirmar;
+    private JButton limpar;
+    private JButton imprimir;
+    private JButton voltar;
     private SortedMap<String, Navio> navios;
     private Screen screen;
 
@@ -43,41 +49,46 @@ public class CadastroNavio extends JPanel {
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         
-        voltarButton = new JButton("Voltar");
-        voltarButton.addActionListener(new ActionListener() {
+        voltar = new JButton("Voltar");
+        voltar.setForeground(Color.WHITE);
+        voltar.setBackground(new Color(126, 32, 32));
+        voltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 screen.changePanel(0); // Troca para a tela anterior (número 0)
+                limparCampos();
             }
         });
-        buttonPanel.add(voltarButton);
+        buttonPanel.add(voltar);
 
-        cadastrarButton = new JButton("Cadastrar");
-        cadastrarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cadastrarNavio();
-            }
-        });
-        buttonPanel.add(cadastrarButton);
-
-        limparButton = new JButton("Limpar");
-        limparButton.addActionListener(new ActionListener() {
+        limpar = new JButton("Limpar");
+        limpar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 limparCampos();
             }
         });
-        buttonPanel.add(limparButton);
+        buttonPanel.add(limpar);
 
-        imprimirButton = new JButton("Imprimir");
-        imprimirButton.addActionListener(new ActionListener() {
+        confirmar = new JButton("Confirmar");
+        confirmar.setForeground(Color.WHITE);
+        confirmar.setBackground(new Color(70, 136, 36));
+        confirmar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cadastrarNavio();
+            }
+        });
+        buttonPanel.add(confirmar);
+
+        imprimir = new JButton("Imprimir");
+        imprimir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 imprimirNavios();
             }
         });
-        buttonPanel.add(imprimirButton);
+        buttonPanel.add(imprimir);
 
         add(buttonPanel, BorderLayout.SOUTH);
 

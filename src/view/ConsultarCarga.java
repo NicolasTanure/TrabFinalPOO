@@ -26,6 +26,7 @@ public class ConsultarCarga extends JPanel {
         super(new BorderLayout());
         this.screen = screen;
         this.cargas = cargas;
+        createUIComponents();
     }
 
     public void createUIComponents() {
