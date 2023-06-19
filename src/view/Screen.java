@@ -10,6 +10,7 @@ public class Screen extends JFrame {
     private CadastroCliente cliente;
     private CadastroCarga carga;
     private ConsultarCarga consulta;
+    private CarregarDadosIniciais CarregarDadosIniciais;
 
     public Screen() {
         super("Sistema ACMEHandelsschifffahrtsgesellschaft");
@@ -26,6 +27,7 @@ public class Screen extends JFrame {
         porto = new CadastroPorto(this);
         cliente = new CadastroCliente(this);
         carga = new CadastroCarga(this,tipo.getTipos(),porto.getPortos(),cliente.getClientes());
+        CarregarDadosIniciais = new CarregarDadosIniciais(this);
     }
 
     /**
@@ -86,7 +88,12 @@ public class Screen extends JFrame {
                     );
                 }
                 break;
-
+                case 9:
+                this.setContentPane(CarregarDadosIniciais);
+                this.pack();
+                this.setSize(650,450);
+                this.setLocationRelativeTo(null);
+                break;
         }
     }
 }
