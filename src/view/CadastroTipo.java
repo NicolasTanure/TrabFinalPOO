@@ -9,8 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class CadastroTipo extends JPanel {
     class Events implements ActionListener { // Inner class para tratamento de eventos
@@ -63,6 +61,10 @@ public class CadastroTipo extends JPanel {
         createUIComponents();
         this.screen = screen;
         this.tipo = this;
+    }
+
+    public Tipos getTipos() {
+        return tipos;
     }
 
     public void createUIComponents() {
@@ -174,14 +176,6 @@ public class CadastroTipo extends JPanel {
 
     // Método que cria instâncias de Tipo de carga
     public void createTipoCarga() throws NumberFormatException {
-        // Inner class para reordenação da lista de tipo de cargas
-        class OrderTipos implements Comparator<TipoCarga> {
-            @Override
-            public int compare(TipoCarga one, TipoCarga second) {
-                return one.getNumero() - second.getNumero();
-            }
-        }
-
         boolean create = false;
         String info = "";
 
@@ -203,7 +197,6 @@ public class CadastroTipo extends JPanel {
             TipoCarga tipoCarga = new Perecivel(tipo, origem, validade, desc);
             // Cadastra o tipo de carga
             if (tipos.adicionarTipo(tipoCarga)) {
-                Collections.sort(tipos.getTipos(), new OrderTipos()); // Reordena a lista
                 create = true;
             } else {
                 info = "Tipo de carga já existente!";
@@ -217,7 +210,6 @@ public class CadastroTipo extends JPanel {
             TipoCarga tipoCarga = new Duravel(tipo, setor, material, percentual, desc);
             // Cadastra o tipo de carga
             if (tipos.adicionarTipo(tipoCarga)) {
-                Collections.sort(tipos.getTipos(), new OrderTipos()); // Reordena a lista
                 create = true;
             } else {
                 info = "Tipo de carga já existente!";

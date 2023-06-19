@@ -17,4 +17,13 @@ public class Perecivel extends TipoCarga {
     public int getValidadeMax() {
         return validadeMax;
     }
+
+    @Override
+    public String toString() {
+        return getNumero() + ";"
+                + getDescricao() + ";"
+                + "PERECIVEL" + ";"
+                + origem + ";"
+                + validadeMax;
+    }
 }

@@ -23,5 +23,15 @@ public class Duravel extends TipoCarga {
     public double getImpostoIndustrializado() {
         return impostoIndustrializado;
     }
+
+    @Override
+    public String toString() {
+        return getNumero() + ";"
+                + getDescricao() + ";"
+                + "DURAVEL" + ";"
+                + setor + ";"
+                + material + ";"
+                + impostoIndustrializado;
+    }
 }
 

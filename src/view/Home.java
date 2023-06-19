@@ -19,11 +19,14 @@ public class Home extends JPanel {
                 Runtime.getRuntime().exit(0);
             } else if (e.getSource() == tipos) {
                 screen.changePanel(1);
-            }
-            else if (e.getSource() == navios) {
+            } else if (e.getSource() == navios) {
                 screen.changePanel(2);
             } else if (e.getSource() == portos) {
                 screen.changePanel(3);
+            } else if (e.getSource() == clientes) {
+                screen.changePanel(4);
+            } else if (e.getSource() == cargas) {
+                screen.changePanel(5);
             }
         }
     }

@@ -14,12 +14,11 @@ public class Porto {
         this.nome = nome;
         this.pais = pais;
     }
-    
-    // Getters
+
     public int getId() {
         return id;
     }
-    
+
     public String getNome() {
         return nome;
     }
@@ -27,9 +26,9 @@ public class Porto {
     public String getPais() {
         return pais;
     }
+
     public Dictionary getDistancia() {return distancia;}
-    
-    // Setters
+
     public void setId(int id) {
         this.id = id;
     }
@@ -40,5 +39,12 @@ public class Porto {
     
     public void setPais(String pais) {
         this.pais = pais;
+    }
+
+    @Override
+    public String toString() {
+        return id + ";"
+                + nome + ";"
+                + pais;
     }
 }

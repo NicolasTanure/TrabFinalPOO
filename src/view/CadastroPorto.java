@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 public class CadastroPorto extends JPanel {
     private final Portos colecaoPortos = new Portos();
     private JTextField idField;
@@ -14,7 +15,7 @@ public class CadastroPorto extends JPanel {
     private JTextField paisField;
     private JButton botao;
     private JButton limparCampos;
-    private JButton fechar;
+    private JButton voltar;
     private JLabel mensagemOK;
     private JLabel mensagemErro;
     private JLabel areaTexto;
@@ -46,7 +47,7 @@ public class CadastroPorto extends JPanel {
 
         botao = new JButton("Cadastrar");
         limparCampos = new JButton("Limpar todos os Campos");
-        fechar = new JButton("Finalizar");
+        voltar = new JButton("Voltar");
         mensagemOK = new JLabel();
         mensagemErro = new JLabel();
 
@@ -95,10 +96,10 @@ public class CadastroPorto extends JPanel {
             }
         });
 
-        fechar.addActionListener(new ActionListener() {
+        voltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                screen.changePanel(0);
             }
         });
 
@@ -112,7 +113,7 @@ public class CadastroPorto extends JPanel {
         FlowLayout areaTextoLayout = new FlowLayout(FlowLayout.LEADING);
         JPanel botaoPainel = new JPanel(botaoLayout);
         JPanel areaTextoPainel = new JPanel(areaTextoLayout);
-        botaoPainel.add(fechar);
+        botaoPainel.add(voltar);
         botaoPainel.add(limparCampos);
         botaoPainel.add(botao);
         areaTextoPainel.add(mensagemErro);
@@ -125,5 +126,9 @@ public class CadastroPorto extends JPanel {
         this.add(painel);
         this.setSize(650, 400);
         this.setVisible(true);
+    }
+
+    public Portos getPortos() {
+        return colecaoPortos;
     }
 }
