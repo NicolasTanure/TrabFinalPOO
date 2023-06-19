@@ -1,7 +1,7 @@
 package src.view;
 
 import javax.swing.*;
-
+import src.model.collections.*;
 public class Screen extends JFrame {
     private JPanel home;
     private CadastroTipo tipo;
@@ -11,6 +11,7 @@ public class Screen extends JFrame {
     private CadastroCarga carga;
     private ConsultarCarga consulta;
     private CarregarDadosIniciais CarregarDadosIniciais;
+    private FreteCarga FreteCarga;
 
     public Screen() {
         super("Sistema ACMEHandelsschifffahrtsgesellschaft");
@@ -28,6 +29,8 @@ public class Screen extends JFrame {
         cliente = new CadastroCliente(this);
         carga = new CadastroCarga(this,tipo.getTipos(),porto.getPortos(),cliente.getClientes());
         CarregarDadosIniciais = new CarregarDadosIniciais(this);
+        FilaEstoque filaestoque = FilaEstoque.getInstance();
+        FreteCarga = new FreteCarga(this,filaestoque,navio);
     }
 
     /**
@@ -87,6 +90,12 @@ public class Screen extends JFrame {
                             JOptionPane.ERROR_MESSAGE
                     );
                 }
+                break;
+                case 7:
+                this.setContentPane(FreteCarga);
+                this.pack();
+                this.setSize(650,450);
+                this.setLocationRelativeTo(null);
                 break;
                 case 9:
                 this.setContentPane(CarregarDadosIniciais);
