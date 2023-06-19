@@ -26,7 +26,6 @@ public class Screen extends JFrame {
         porto = new CadastroPorto(this);
         cliente = new CadastroCliente(this);
         carga = new CadastroCarga(this,tipo.getTipos(),porto.getPortos(),cliente.getClientes());
-        consulta = new ConsultarCarga(this);
     }
 
     /**
@@ -66,7 +65,7 @@ public class Screen extends JFrame {
                 this.setSize(650,450);
                 break;
             case 6:
-                consulta.setCargas(carga.getEstoque().getCargas());
+                consulta = new ConsultarCarga(this,carga.getEstoque().getCargas());
                 consulta.createUIComponents();
                 this.setContentPane(consulta);
                 this.pack();

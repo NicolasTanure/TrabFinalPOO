@@ -22,12 +22,9 @@ public class ConsultarCarga extends JPanel {
     private LinkedList<Carga> cargas;
     private JButton voltar;
 
-    public ConsultarCarga(Screen screen) {
+    public ConsultarCarga(Screen screen, LinkedList<Carga> cargas) {
         super(new BorderLayout());
         this.screen = screen;
-    }
-
-    public void setCargas(LinkedList<Carga> cargas) {
         this.cargas = cargas;
     }
 
