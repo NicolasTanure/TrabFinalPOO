@@ -256,7 +256,7 @@ public class CadastroCarga extends JPanel {
             headerInformation.setForeground(Color.GREEN);
             headerInformation.setText("CADASTRADO COM SUCESSO");
             information.setText(
-                    "Código;Cliente;Origem;Destino;Peso;ValorDeclarado;TempoMáximo;TipoCarga;Prioridade;Situação" + "\n"
+                    "Código;Peso;ValorDeclarado;TempoMáx;Situação;TipoCarga;Cliente;Origem;Destino" + "\n"
                     + carga.toString()
             );
         } else { // Senão foi
