@@ -24,6 +24,6 @@ public class Perecivel extends TipoCarga {
                 + "Desc:" + getDescricao() + ";"
                 + "PERECIVEL" + ";"
                 + "Origem:" + origem + ";"
-                + "Válidade:" + validadeMax;
+                + "Validade:" + validadeMax;
     }
 }

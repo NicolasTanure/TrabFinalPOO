@@ -77,7 +77,7 @@ public class Carga {
 		return "CARGA: ID:" + identificador + ";"
 				+ "Peso:" + peso + ";"
 				+ "Valor:" +valorDeclarado + ";"
-				+ "Tempo:" + tempoMaximo + ";"
+				+ "Tempo Máx.:" + tempoMaximo + ";"
 				+ "Situação:" + estado.getNome() + "\n"
 				+ " | TIPO: " + getTipoCarga().toString() + "\n"
 				+ " | CLIENTE: " + getCliente().toString() + "\n"
