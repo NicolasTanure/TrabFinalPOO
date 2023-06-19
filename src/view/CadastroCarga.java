@@ -255,10 +255,7 @@ public class CadastroCarga extends JPanel {
         if (create) { // Se foi realizado o cadastro
             headerInformation.setForeground(Color.GREEN);
             headerInformation.setText("CADASTRADO COM SUCESSO");
-            information.setText(
-                    "Código;Peso;ValorDeclarado;TempoMáx;Situação;TipoCarga;Cliente;Origem;Destino" + "\n"
-                    + carga.toString()
-            );
+            information.setText(carga.toString());
         } else { // Senão foi
             headerInformation.setForeground(Color.RED);
             headerInformation.setText("FALHA NO CADASTRO");

@@ -8,7 +8,8 @@ public class Screen extends JFrame {
     private CadastroNavio navio;
     private CadastroPorto porto;
     private CadastroCliente cliente;
-    private JPanel carga;
+    private CadastroCarga carga;
+    private ConsultarCarga consulta;
 
     public Screen() {
         super("Sistema ACMEHandelsschifffahrtsgesellschaft");
@@ -25,6 +26,7 @@ public class Screen extends JFrame {
         porto = new CadastroPorto(this);
         cliente = new CadastroCliente(this);
         carga = new CadastroCarga(this,tipo.getTipos(),porto.getPortos(),cliente.getClientes());
+        consulta = new ConsultarCarga(this);
     }
 
     /**
@@ -62,6 +64,13 @@ public class Screen extends JFrame {
                 this.setContentPane(carga);
                 this.pack();
                 this.setSize(650,450);
+                break;
+            case 6:
+                consulta.setCargas(carga.getEstoque().getCargas());
+                consulta.createUIComponents();
+                this.setContentPane(consulta);
+                this.pack();
+                this.setSize(650,500);
                 break;
 
         }

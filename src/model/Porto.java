@@ -43,8 +43,8 @@ public class Porto {
 
     @Override
     public String toString() {
-        return id + ";"
-                + nome + ";"
-                + pais;
+        return "ID:" + id + ";"
+                + "Nome:" + nome + ";"
+                + "País:" +pais;
     }
 }

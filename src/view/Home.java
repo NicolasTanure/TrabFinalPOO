@@ -27,6 +27,8 @@ public class Home extends JPanel {
                 screen.changePanel(4);
             } else if (e.getSource() == cargas) {
                 screen.changePanel(5);
+            } else if (e.getSource() == listarCargas) {
+                screen.changePanel(6);
             }
         }
     }

@@ -20,10 +20,10 @@ public class Perecivel extends TipoCarga {
 
     @Override
     public String toString() {
-        return getNumero() + ";"
-                + getDescricao() + ";"
+        return "Nº:" +getNumero() + ";"
+                + "Desc:" + getDescricao() + ";"
                 + "PERECIVEL" + ";"
-                + origem + ";"
-                + validadeMax;
+                + "Origem:" + origem + ";"
+                + "Válidade:" + validadeMax;
     }
 }
