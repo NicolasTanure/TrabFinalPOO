@@ -15,6 +15,15 @@ public class Portos {
         return listaPorto;
     }
 
+    public Porto getPorto(int id) {
+        for (Porto p : listaPorto) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
+    }
+
     public boolean checaID(Porto p) {
         for(Porto pp : listaPorto) {
             if (pp.getId() == p.getId())

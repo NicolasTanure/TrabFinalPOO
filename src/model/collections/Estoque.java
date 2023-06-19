@@ -55,19 +55,8 @@ public class Estoque {
         s.append("Código;Cliente;Origem;Destino;Peso;ValorDeclarado;TempoMáximo;TipoCarga;Prioridade;Situação\n");
 
         for (Carga c : cargas) {
-            s.append(c.getIdentificador() + ";"
-                    + c.getCliente().getCod() + ";"
-                    + c.getOrigem().getId() + ";"
-                    + c.getDestino().getId() + ";"
-                    + c.getPeso() + ";"
-                    + c.getValorDeclarado() + ";"
-                    + c.getTempoMaximo() + ";"
-                    + c.getTipoCarga().getNumero() + ";"
-                    + c.getPrioridade().getNome() + ";"
-                    + c.getEstado().getNome() + "\n"
-            );
+            s.append(c.toString() + "\n");
         }
         return s.toString();
     }
-
 }

@@ -61,7 +61,7 @@ public class Screen extends JFrame {
             case 5:
                 this.setContentPane(carga);
                 this.pack();
-                this.setSize(550,600);
+                this.setSize(650,450);
                 break;
 
         }

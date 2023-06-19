@@ -6,7 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="18d7ec8c-2dfe-43ec-ae22-2339f877bbd5" name="Changes" comment="dicionario das distancias adicionado">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Carga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Carga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Duravel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Duravel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Perecivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Perecivel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Porto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Porto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/collections/Estoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/collections/Estoque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/collections/FilaEstoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/collections/FilaEstoque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/collections/Portos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/collections/Portos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CadastroCarga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CadastroCarga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CadastroCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CadastroCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CadastroTipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CadastroTipo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Screen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

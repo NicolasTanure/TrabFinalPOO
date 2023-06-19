@@ -123,19 +123,19 @@ public class CadastroCliente extends JPanel {
     }
 
     public void createInformationFields() {
-        // Área que mostra as informações linha 5
-        JPanel painelText5 = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        // Área que mostra as informações linha 4
+        JPanel painelText4 = new JPanel(new FlowLayout(FlowLayout.LEADING));
         JLabel textInformation = new JLabel("Informações:");
         textInformation.setFont(new Font("Arial", Font.BOLD,13));
-        painelText5.add(textInformation);
+        painelText4.add(textInformation);
         headerInformation = new JLabel();
-        painelText5.add(headerInformation);
-        this.add(painelText5);
-        // Área que mostra as informações linha 6
-        JPanel painelText6 = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        painelText4.add(headerInformation);
+        this.add(painelText4);
+        // Área que mostra as informações linha 5
+        JPanel painelText5 = new JPanel(new FlowLayout(FlowLayout.LEADING));
         information = new JLabel();
-        painelText6.add(information);
-        this.add(painelText6);
+        painelText5.add(information);
+        this.add(painelText5);
     }
 
     // Método limpa campos

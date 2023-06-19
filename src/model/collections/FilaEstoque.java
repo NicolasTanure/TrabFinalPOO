@@ -19,9 +19,7 @@ public class FilaEstoque {
 
     public boolean addCarga(Carga c) {
         if (!consultar(c.getIdentificador())) {
-            if (c.getEstado() == EstadoCarga.PENDENTE) {
-                return fila.offer(c);
-            }
+            return fila.offer(c);
         }
         return false;
     }

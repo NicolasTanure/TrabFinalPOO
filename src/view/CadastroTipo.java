@@ -222,12 +222,10 @@ public class CadastroTipo extends JPanel {
             headerInformation.setForeground(Color.GREEN);
             headerInformation.setText("CADASTRADO COM SUCESSO");
             information.setText("Novo tipo de carga adicionado");
-            System.out.println(tipos.toString());
         } else { // Senão foi
             headerInformation.setForeground(Color.RED);
             headerInformation.setText("FALHA NO CADASTRO");
             information.setText(info);
-            System.out.println(tipos.toString());
         }
     }
 }
