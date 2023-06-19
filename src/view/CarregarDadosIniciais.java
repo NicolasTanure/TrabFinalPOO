@@ -19,7 +19,7 @@ public class CarregarDadosIniciais extends JPanel {
     private Screen screen;
     private JTextField nomeArquivoTextField;
     private JTextArea mensagemTextArea;
-    private Queue<String> filaCargasPendentes;
+    private Queue<Carga> filaCargasPendentes;
 
     public CarregarDadosIniciais(Screen screen) {
         super();

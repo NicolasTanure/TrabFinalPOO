@@ -8,6 +8,7 @@ import java.util.Queue;
 
 public class FilaEstoque {
     private Queue<Carga> fila;
+    private static FilaEstoque instance;
 
     public FilaEstoque() {
         fila = new LinkedList<>();
@@ -32,4 +33,22 @@ public class FilaEstoque {
         }
         return false;
     }
+    public Queue<Carga> getCargasPendentes() {
+        Queue<Carga> cargasPendentes = new LinkedList<>();
+        for (Carga carga : fila) {
+            if (carga.getEstado() == EstadoCarga.PENDENTE) {
+                cargasPendentes.offer(carga);
+            }
+        }
+        return cargasPendentes;
+    }
+
+    public static FilaEstoque getInstance() {
+        if (instance == null) {
+            instance = new FilaEstoque();
+        }
+        return instance;
+    }
 }
+
+

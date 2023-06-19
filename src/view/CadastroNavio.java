@@ -1,4 +1,5 @@
 package src.view;
+import java.util.Queue;
 
 import src.model.Navio;
 
@@ -6,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -163,4 +165,21 @@ public class CadastroNavio extends JPanel {
             mensagemTextArea.append(entry.getValue().toString() + "\n");
         }
     }
+    
+  
+
+    public Queue<Navio> getNaviosDisponiveis() {
+    Queue<Navio> naviosDisponiveis = new LinkedList<>();
+
+    for (Navio navio : navios.values()) {
+        if (navio.getCarga() == null) {
+            naviosDisponiveis.offer(navio);
+        }
+    }
+
+    return naviosDisponiveis;
+    }
+
+
 }
+
