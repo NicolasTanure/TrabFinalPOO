@@ -34,6 +34,7 @@ public class CadastroTipo extends JPanel {
                 clearFields(tipo);
             } else if (ev.getSource() == voltar) {
                 screen.changePanel(0);
+                clearFields(tipo);
             }
         }
     }

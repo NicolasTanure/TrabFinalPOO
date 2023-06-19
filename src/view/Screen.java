@@ -8,7 +8,8 @@ public class Screen extends JFrame {
     private CadastroNavio navio;
     private CadastroPorto porto;
     private CadastroCliente cliente;
-    private JPanel carga;
+    private CadastroCarga carga;
+    private ConsultarCarga consulta;
 
     public Screen() {
         super("Sistema ACMEHandelsschifffahrtsgesellschaft");
@@ -37,31 +38,53 @@ public class Screen extends JFrame {
                 this.setContentPane(home);
                 this.pack(); // Redimensiona a tela para receber todos componentes
                 this.setSize(550,600);
+                this.setLocationRelativeTo(null);
                 break;
             case 1:
                 this.setContentPane(tipo);
                 this.pack();
-                this.setSize(550,500);
+                this.setSize(550,450);
+                this.setLocationRelativeTo(null);
                 break;
             case 2:
                 this.setContentPane(navio);
                 this.pack();
                 this.setSize(550,600);
+                this.setLocationRelativeTo(null);
                 break;
             case 3:
                 this.setContentPane(porto);
                 this.pack();
-                this.setSize(550,600);
+                this.setSize(400,430);
+                this.setLocationRelativeTo(null);
                 break;
             case 4:
                 this.setContentPane(cliente);
                 this.pack();
-                this.setSize(550,450);
+                this.setSize(550,400);
+                this.setLocationRelativeTo(null);
                 break;
             case 5:
                 this.setContentPane(carga);
                 this.pack();
                 this.setSize(650,450);
+                this.setLocationRelativeTo(null);
+                break;
+            case 6:
+                if (!carga.getEstoque().getCargas().isEmpty()) { // Se existem cargas cadastradas
+                    consulta = new ConsultarCarga(this,carga.getEstoque().getCargas());
+                    this.setContentPane(consulta);
+                    this.pack();
+                    this.setSize(800,400);
+                    this.setLocationRelativeTo(null);
+                } else {
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Sem cargas existentes para consulta!",
+                            "ERRO",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
                 break;
 
         }

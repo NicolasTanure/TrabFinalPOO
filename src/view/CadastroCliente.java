@@ -32,6 +32,7 @@ public class CadastroCliente extends JPanel {
                 clearFields(cliente);
             } else if (ev.getSource() == voltar) {
                 screen.changePanel(0);
+                clearFields(cliente);
             }
         }
     }
@@ -52,9 +53,9 @@ public class CadastroCliente extends JPanel {
         super(new GridLayout(7,1));
         this.setBorder(BorderFactory.createEmptyBorder(20,20,10,20));
         clientes = new Clientela();
-        createUIComponents();
         this.screen = screen;
         this.cliente = this;
+        createUIComponents();
     }
 
     public Clientela getClientes() {

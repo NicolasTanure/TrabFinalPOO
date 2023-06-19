@@ -32,6 +32,7 @@ public class CadastroCarga extends JPanel {
                 clearFields(carga);
             } else if (ev.getSource() == voltar) {
                 screen.changePanel(0);
+                clearFields(carga);
             }
         }
     }
@@ -62,12 +63,12 @@ public class CadastroCarga extends JPanel {
         this.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         estoque = new Estoque();
         fila = new FilaEstoque();
-        createUIComponents();
         this.screen = screen;
         this.carga = this;
         this.tipos = tipos;
         this.portos = portos;
         this.clientes = clientes;
+        createUIComponents();
     }
 
     public Estoque getEstoque() {
@@ -220,27 +221,31 @@ public class CadastroCarga extends JPanel {
                 Porto d = portos.getPorto(codDestino);
 
                 if (o != null && d != null) {
-                    int tc = Integer.parseInt(tipo);
-                    TipoCarga t = tipos.getTipo(tc);
+                    if (o != d) {
+                        int tc = Integer.parseInt(tipo);
+                        TipoCarga t = tipos.getTipo(tc);
 
-                    if (t != null) {
-                        int cod = Integer.parseInt(id);
-                        int kg = Integer.parseInt(peso);
-                        int dias = Integer.parseInt(tempoMax);
-                        double real = Double.parseDouble(valor);
+                        if (t != null) {
+                            int cod = Integer.parseInt(id);
+                            int kg = Integer.parseInt(peso);
+                            int dias = Integer.parseInt(tempoMax);
+                            double real = Double.parseDouble(valor);
 
-                        carga = new Carga(cod, c, o, d, kg, real, dias, t);
+                            carga = new Carga(cod, c, o, d, kg, real, dias, t);
 
-                        if (estoque.adicionarCarga(carga)) {
-                            if (carga.getEstado() == EstadoCarga.PENDENTE) {
-                                fila.addCarga(carga); // Adiciona na fila
+                            if (estoque.adicionarCarga(carga)) {
+                                if (carga.getEstado() == EstadoCarga.PENDENTE) {
+                                    fila.addCarga(carga); // Adiciona na fila
+                                }
+                                create = true;
+                            } else {
+                                info = "ERRO: Carga já existente!";
                             }
-                            create = true;
                         } else {
-                            info = "ERRO: Carga já cadastrada!";
+                            info = "ERRO: Tipo de carga não cadastrado!";
                         }
                     } else {
-                        info = "ERRO: Tipo de carga não cadastrado!";
+                        info = "ERRO: Porto de origem e de destino iguais!";
                     }
                 } else {
                     info = "ERRO: Porto(s) não cadastrado(s)!";
@@ -255,10 +260,7 @@ public class CadastroCarga extends JPanel {
         if (create) { // Se foi realizado o cadastro
             headerInformation.setForeground(Color.GREEN);
             headerInformation.setText("CADASTRADO COM SUCESSO");
-            information.setText(
-                    "Código;Cliente;Origem;Destino;Peso;ValorDeclarado;TempoMáximo;TipoCarga;Prioridade;Situação" + "\n"
-                    + carga.toString()
-            );
+            information.setText(carga.toString());
         } else { // Senão foi
             headerInformation.setForeground(Color.RED);
             headerInformation.setText("FALHA NO CADASTRO");

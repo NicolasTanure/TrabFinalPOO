@@ -21,6 +21,11 @@ public class Estoque {
         cargas = new LinkedList<>();
     }
 
+    public LinkedList<Carga> getCargas() {
+        LinkedList<Carga> clone = (LinkedList<Carga>) cargas.clone();
+        return clone;
+    }
+
     public Carga getCarga(int id) {
         for (Carga c : cargas) {
             if (c.getIdentificador() == id) {

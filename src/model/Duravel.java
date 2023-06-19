@@ -26,12 +26,12 @@ public class Duravel extends TipoCarga {
 
     @Override
     public String toString() {
-        return getNumero() + ";"
-                + getDescricao() + ";"
+        return "Nº:" + getNumero() + ";"
+                + "Desc:" + getDescricao() + ";"
                 + "DURAVEL" + ";"
-                + setor + ";"
-                + material + ";"
-                + impostoIndustrializado;
+                + "Setor:" + setor + ";"
+                + "Material:" + material + ";"
+                + "Imposto:" + impostoIndustrializado;
     }
 }
 
