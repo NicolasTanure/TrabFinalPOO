@@ -1,5 +1,10 @@
 package src.view;
 
+import src.model.Carga;
+import src.model.Cliente;
+import src.model.Porto;
+import src.model.TipoCarga;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -52,10 +57,10 @@ public class CarregarDadosIniciais extends JPanel {
                 screen.changePanel(0); // Troca para a tela anterior (número 0)
             }
         });
-        
+
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(voltar);
-        
+
         add(panel, BorderLayout.NORTH);
         add(new JScrollPane(mensagemTextArea), BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
@@ -63,12 +68,33 @@ public class CarregarDadosIniciais extends JPanel {
 
     private void carregarDados(String nomeArquivo) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(nomeArquivo + ".txt"));
+            BufferedReader reader = new BufferedReader(new FileReader(nomeArquivo + ".csv"));
             String linha;
 
             // Carregar os dados do arquivo para o sistema
             while ((linha = reader.readLine()) != null) {
-                filaCargasPendentes.add(linha);
+                String[] dadosCarga = linha.split(";");
+
+                // Extrair os valores dos dados da carga
+                int codigo = Integer.parseInt(dadosCarga[0]);
+                int peso = Integer.parseInt(dadosCarga[4]);
+                double valorDeclarado = Double.parseDouble(dadosCarga[5]);
+                int tempoMaximo = Integer.parseInt(dadosCarga[6]);
+                int tipoCarga = Integer.parseInt(dadosCarga[7]);
+
+                // Extrair os valores dos dados de clientes
+                int codCliente = Integer.parseInt(dadosCarga[1]);
+                String nomeCliente = dadosCarga[2];
+                String emailCliente = dadosCarga[3];
+
+                // Criar objeto Cliente com os dados
+                Cliente cliente = new Cliente(codCliente, nomeCliente, emailCliente);
+
+                // Criar objeto Carga com os dados
+                Carga carga = new Carga(codigo, cliente, origem, destino, peso, valorDeclarado, tempoMaximo, tipoCargaObj);
+
+                // Adicionar a carga à fila de cargas pendentes
+                filaCargasPendentes.add(carga.toString()); // Você pode modificar isso conforme necessário
             }
 
             reader.close();
@@ -86,4 +112,3 @@ public class CarregarDadosIniciais extends JPanel {
         }
     }
 }
-
