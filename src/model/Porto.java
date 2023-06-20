@@ -1,18 +1,21 @@
 package src.model;
 import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 
 public class Porto {
     private int id;
     private String nome;
     private String pais;
-    private Dictionary distancia = new Hashtable();
+    private Map<Integer,Integer> distancia;
     
     public Porto(int id, String nome, String pais) {
         this.id = id;
         this.nome = nome;
         this.pais = pais;
+        this.distancia = new HashMap<>();
     }
 
     public int getId() {
@@ -27,7 +30,7 @@ public class Porto {
         return pais;
     }
 
-    public Dictionary getDistancia() {return distancia;}
+    public Map<Integer,Integer> getDistancia() {return distancia;}
 
     public void setId(int id) {
         this.id = id;

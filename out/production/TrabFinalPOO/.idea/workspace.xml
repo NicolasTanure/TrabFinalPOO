@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18d7ec8c-2dfe-43ec-ae22-2339f877bbd5" name="Changes" comment="dicionario das distancias adicionado">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Carga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Carga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/FreteCarga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/FreteCarga.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

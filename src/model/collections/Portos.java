@@ -26,8 +26,9 @@ public class Portos {
 
     public boolean checaID(Porto p) {
         for(Porto pp : listaPorto) {
-            if (pp.getId() == p.getId())
+            if (pp.getId() == p.getId()) {
                 return false;
+            }
         }
         return true;
     }
@@ -56,12 +57,11 @@ public class Portos {
     }
 
     public void adicionaDistancia(Porto p) {
-        if (listaPorto.isEmpty()) {
-            return;
-        }
-        for(Porto porto : listaPorto) {
-            porto.getDistancia().put(p.getId(), 100);
-            p.getDistancia().put(porto.getId(), 100);
+        if (!listaPorto.isEmpty()) {
+            for (Porto porto : listaPorto) {
+                porto.getDistancia().put(p.getId(), 100);
+                p.getDistancia().put(porto.getId(), 100);
+            }
         }
     }
 }

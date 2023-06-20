@@ -10,8 +10,7 @@ public class Screen extends JFrame {
     private CadastroCliente cliente;
     private CadastroCarga carga;
     private ConsultarCarga consulta;
-    private CarregarDadosIniciais CarregarDadosIniciais;
-    private FreteCarga FreteCarga;
+    private FreteCarga freteCarga;
 
     public Screen() {
         super("Sistema ACMEHandelsschifffahrtsgesellschaft");
@@ -28,9 +27,6 @@ public class Screen extends JFrame {
         porto = new CadastroPorto(this);
         cliente = new CadastroCliente(this);
         carga = new CadastroCarga(this,tipo.getTipos(),porto.getPortos(),cliente.getClientes());
-        CarregarDadosIniciais = new CarregarDadosIniciais(this);
-        FilaEstoque filaestoque = FilaEstoque.getInstance();
-        FreteCarga = new FreteCarga(this,filaestoque,navio);
     }
 
     /**
@@ -91,17 +87,21 @@ public class Screen extends JFrame {
                     );
                 }
                 break;
-                case 7:
-                this.setContentPane(FreteCarga);
-                this.pack();
-                this.setSize(650,450);
-                this.setLocationRelativeTo(null);
-                break;
-                case 9:
-                this.setContentPane(CarregarDadosIniciais);
-                this.pack();
-                this.setSize(650,450);
-                this.setLocationRelativeTo(null);
+            case 7:
+                if (!carga.getFila().getFila().isEmpty()) {
+                    freteCarga = new FreteCarga(this,carga.getFila(),navio.getNavios());
+                    this.setContentPane(freteCarga);
+                    this.pack();
+                    this.setSize(650,450);
+                    this.setLocationRelativeTo(null);
+                } else {
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Não há cargas para serem fretadas!",
+                            "ERRO",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
                 break;
         }
     }

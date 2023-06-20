@@ -168,15 +168,8 @@ public class CadastroNavio extends JPanel {
         }
     }
 
-    public Queue<Navio> getNaviosDisponiveis() {
-        Queue<Navio> naviosDisponiveis = new LinkedList<>();
-
-        for (Navio navio : navios.values()) {
-            if (navio.getCarga() == null) {
-                naviosDisponiveis.offer(navio);
-            }
-        }
-        return naviosDisponiveis;
+    public LinkedList<Navio> getNavios() {
+        return new LinkedList<>(navios.values());
     }
 }
 

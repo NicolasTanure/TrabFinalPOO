@@ -29,12 +29,8 @@ public class Home extends JPanel {
                 screen.changePanel(5);
             } else if (e.getSource() == listarCargas) {
                 screen.changePanel(6);
-            }
-             else if(e.getSource() == frete){
+            } else if(e.getSource() == frete){
                 screen.changePanel(7);
-            }
-            else if(e.getSource() == dadosIniciais){
-                screen.changePanel(9);
             }
         }
     }
