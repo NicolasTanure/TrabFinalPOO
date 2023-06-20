@@ -1,9 +1,6 @@
 package src.view;
 
-import src.model.Carga;
-import src.model.EstadoCarga;
-import src.model.Navio;
-import src.model.Prioridade;
+import src.model.*;
 import src.model.collections.FilaEstoque;
 
 import javax.swing.*;
@@ -119,11 +116,14 @@ public class FreteCarga extends JPanel {
     }
 
     private void fretarCargas() {
+        double preco = 0;
+        Navio navio = null;
+
         boolean frete = false;
         String info = "";
 
         Map<Integer, Integer> destino = current.getDestino().getDistancia();
-        int id = current.getDestino().getId();
+        int id = current.getOrigem().getId();
         System.out.println(destino.containsKey(0));
         int distancia = destino.get(id); // >>>> ERRO
 
@@ -137,12 +137,16 @@ public class FreteCarga extends JPanel {
                             current.setEstado(EstadoCarga.LOCADO);
                             n.setCarga(current);
 
+                            navio = n;
+
                             frete = true;
                             info = "Carga alocada!";
                         } else if (rapido.isSelected()) {
                             current.setPrioridade(Prioridade.RAPIDO);
                             current.setEstado(EstadoCarga.LOCADO);
                             n.setCarga(current);
+
+                            navio = n;
 
                             frete = true;
                             info = "Carga alocada!";
@@ -172,14 +176,21 @@ public class FreteCarga extends JPanel {
         }
 
         if (frete) { // Se foi possível fretar
+            preco = calculaFrete(navio, current);
+
             headerInformation.setForeground(Color.GREEN);
             headerInformation.setText("CARGA ALOCADA");
-            information.setText("Carga em transporte..."); // >>>> Printa aqui o valor do frete
+            information.setText("Carga em transporte..." + "Preço: " + preco); // >>>> Printa aqui o valor do frete
+
 
             if (!fila.getFila().isEmpty()) {
                 fila.removeCarga(); // Remove a carga cadastrada da fila
-                current = fila.getFirstCarga();
-                dadosCarga.setText(current.toString()); // Atualiza as informações na tela
+                if(fila.getFirstCarga() == null) {
+                    dadosCarga.setText("");
+                }else {
+                    current = fila.getFirstCarga();
+                    dadosCarga.setText(current.toString()); // Atualiza as informações na tela
+                }
             } else {
                 dadosCarga.setText("");
                 headerInformation.setForeground(Color.RED);
@@ -191,6 +202,48 @@ public class FreteCarga extends JPanel {
             headerInformation.setText("NÃO FOI POSSÍVEL ALOCAR CARGA");
             information.setText(info);
         }
+    }
+
+    public double calculaFrete(Navio navio, Carga carga ) {
+        double precoFinal = 0;
+        double precoRegiao = 0;
+        double precoPeso = 0;
+        double precoPrioridade = 0;
+
+        int idDestino = carga.getDestino().getId();
+        int distancia = carga.getOrigem().getDistancia().get(idDestino);
+
+        //calcula o preco por prioridade
+        if(carga.getPrioridade() == Prioridade.RAPIDO) {
+            precoPrioridade = distancia * (navio.getCustoPorMilhaBasico() *2);
+        }else {
+            precoPrioridade = distancia * navio.getCustoPorMilhaBasico();
+        }
+
+        //calcula o preco por regiao
+        if(carga.getOrigem().getPais().toLowerCase().equals("brasil") && carga.getDestino().getPais().toLowerCase().equals("brasil")) {
+            precoRegiao = 10000;
+        } else {
+            precoRegiao = 50000;
+        }
+
+        //calcula o preco por peso
+        if(carga.getTipoCarga() instanceof Duravel) {
+            Duravel duravel = (Duravel) carga.getTipoCarga();
+            precoPeso = carga.getPeso() * 1.5 + (carga.getValorDeclarado() * (duravel.getImpostoIndustrializado()/100));
+        } else {
+            precoPeso = carga.getPeso() * 2;
+        }
+        System.out.println("custo milhas: "+navio.getCustoPorMilhaBasico());
+        System.out.println("velocidade: " + navio.getVelocidade());
+        System.out.println("peso:" +carga.getPeso());
+        System.out.println("preco regiao: " + precoRegiao);
+        System.out.println("preco peso: "+ precoPeso);
+        System.out.println("preco prioridade: " + precoPrioridade);
+
+        precoFinal = precoRegiao + precoPeso + precoPrioridade;
+        return precoFinal;
+
     }
 }
 

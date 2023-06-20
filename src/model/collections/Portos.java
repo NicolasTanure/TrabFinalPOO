@@ -42,7 +42,9 @@ public class Portos {
                 for (int i = 0; i < listaPorto.size(); i++) {
                     if (p.getId() < listaPorto.get(i).getId()) {
                         listaPorto.add(i, p);
+                        System.out.println("Porto Cadastrado id: " + p.getId());
                         adicionaDistancia(p);
+                        System.out.println("Distancia cadastradas");
                         return true;
                     } else {
                         listaPorto.add(p);
