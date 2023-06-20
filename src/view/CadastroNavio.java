@@ -26,10 +26,8 @@ public class CadastroNavio extends JPanel {
     private Screen screen;
 
     public CadastroNavio(Screen screen) {
-        super();
+        super(new BorderLayout());
         this.screen = screen;
-        setSize(500, 400);
-        setLayout(new BorderLayout());
 
         JPanel inputPanel = new JPanel(new GridLayout(5, 2));
         inputPanel.add(new JLabel("Nome:"));
@@ -44,10 +42,10 @@ public class CadastroNavio extends JPanel {
         inputPanel.add(new JLabel("Custo por Milha Básico:"));
         custoTextField = new JTextField();
         inputPanel.add(custoTextField);
-        add(inputPanel, BorderLayout.NORTH);
+        this.add(inputPanel, BorderLayout.NORTH);
 
         mensagemTextArea = new JTextArea();
-        add(new JScrollPane(mensagemTextArea), BorderLayout.CENTER);
+        this.add(new JScrollPane(mensagemTextArea), BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         
@@ -92,11 +90,9 @@ public class CadastroNavio extends JPanel {
         });
         buttonPanel.add(imprimir);
 
-        add(buttonPanel, BorderLayout.SOUTH);
+        this.add(buttonPanel, BorderLayout.SOUTH);
 
         navios = new TreeMap<>();
-
-        setVisible(true);
     }
 
     private void cadastrarNavio() {
@@ -115,7 +111,9 @@ public class CadastroNavio extends JPanel {
             return;
         }
 
-        double velocidade, autonomia, custo;
+        double velocidade;
+        double autonomia;
+        double custo;
 
         try {
             velocidade = Double.parseDouble(velocidadeStr);
@@ -141,7 +139,6 @@ public class CadastroNavio extends JPanel {
         Navio navio = new Navio(nome, velocidade, autonomia, custo);
         navios.put(nome, navio);
         exibirMensagem("Navio cadastrado com sucesso: " + navio.toString());
-        limparCampos();
     }
 
     private void exibirMensagem(String mensagem) {
@@ -149,7 +146,12 @@ public class CadastroNavio extends JPanel {
     }
 
     private void exibirMensagemErro(String mensagem) {
-        JOptionPane.showMessageDialog(this, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(
+                this,
+                mensagem,
+                "ERRO",
+                JOptionPane.ERROR_MESSAGE
+        );
     }
 
     private void limparCampos() {
@@ -165,21 +167,9 @@ public class CadastroNavio extends JPanel {
             mensagemTextArea.append(entry.getValue().toString() + "\n");
         }
     }
-    
-  
 
-    public Queue<Navio> getNaviosDisponiveis() {
-    Queue<Navio> naviosDisponiveis = new LinkedList<>();
-
-    for (Navio navio : navios.values()) {
-        if (navio.getCarga() == null) {
-            naviosDisponiveis.offer(navio);
-        }
+    public LinkedList<Navio> getNavios() {
+        return new LinkedList<>(navios.values());
     }
-
-    return naviosDisponiveis;
-    }
-
-
 }
 
