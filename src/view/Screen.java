@@ -56,7 +56,7 @@ public class Screen extends JFrame {
             case 3:
                 this.setContentPane(porto);
                 this.pack();
-                this.setSize(400,430);
+                this.setSize(600,660);
                 this.setLocationRelativeTo(null);
                 break;
             case 4:

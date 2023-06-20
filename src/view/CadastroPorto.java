@@ -1,5 +1,6 @@
 package src.view;
 
+import src.model.Navio;
 import src.model.collections.Portos;
 import src.model.Porto;
 
@@ -7,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 public class CadastroPorto extends JPanel {
     private final Portos colecaoPortos = new Portos();
@@ -18,7 +20,11 @@ public class CadastroPorto extends JPanel {
     private JButton voltar;
     private JLabel mensagemOK;
     private JLabel mensagemErro;
+    private JLabel mensagemLista;
     private JLabel areaTexto;
+
+    private JTextArea areaLista;
+    private JButton imprimir;
     private Screen screen;
 
 
@@ -38,6 +44,8 @@ public class CadastroPorto extends JPanel {
         JLabel nomeLabel = new JLabel("Nome:");
         JLabel paisLabel = new JLabel("País:");
         areaTexto = new JLabel("Informações:");
+        areaLista = new JTextArea("");
+        this.add(new JScrollPane(areaLista), BorderLayout.CENTER);
         idField = new JTextField();
         nomeField = new JTextField();
         paisField = new JTextField();
@@ -57,6 +65,7 @@ public class CadastroPorto extends JPanel {
         voltar.setBackground(new Color(126, 32, 32));
         mensagemOK = new JLabel();
         mensagemErro = new JLabel();
+        mensagemLista = new JLabel("Lista de Portos:");
 
         // Tratamento de evento dos botões
         confirmar.addActionListener(new ActionListener() {
@@ -100,6 +109,7 @@ public class CadastroPorto extends JPanel {
                 paisField.setText("");
                 mensagemOK.setText("");
                 mensagemErro.setText("");
+                mensagemLista.setText("");
             }
         });
 
@@ -110,9 +120,25 @@ public class CadastroPorto extends JPanel {
             }
         });
 
+        imprimir = new JButton("Imprimir");
+        imprimir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                areaLista.setText("");
+                if(colecaoPortos.getListaPorto().isEmpty()) {
+                    areaLista.setText("Nenhum porto cadastrado");
+                } else {
+                    for (Porto p : colecaoPortos.getListaPorto()) {
+                        areaLista.append(p.toString() + "\n");
+                    }
+                }
+            }
+        });
 
 
-        GridLayout grid = new GridLayout(5, 1,0,8);
+
+
+        GridLayout grid = new GridLayout(7, 1,0,8);
         JPanel painel = new JPanel(grid);
         painel.add(title);
         painel.add(painelCampos);
@@ -120,10 +146,13 @@ public class CadastroPorto extends JPanel {
         JPanel confirmarPainel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         confirmarPainel.add(voltar);
         confirmarPainel.add(limpar);
+        confirmarPainel.add(imprimir);
         confirmarPainel.add(confirmar);
         painel.add(confirmarPainel);
-
+        painel.add(mensagemLista);
+        painel.add(areaLista);
         painel.add(areaTexto);
+
 
         JPanel areaTextoPainel = new JPanel(new FlowLayout(FlowLayout.LEADING));
         areaTextoPainel.add(mensagemErro);
@@ -132,6 +161,8 @@ public class CadastroPorto extends JPanel {
 
         this.add(painel);
     }
+
+
 
     public Portos getPortos() {
         return colecaoPortos;
