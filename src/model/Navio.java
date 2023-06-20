@@ -1,11 +1,14 @@
 package src.model;
 
+import java.util.ArrayList;
+
 public class Navio {
     private String nome;
     private double velocidade;
     private double autonomia;
     private double custoPorMilhaBasico;
     private Carga carga;
+    private ArrayList<Carga> historico;
 
     public Navio(String nome, double velocidade, double autonomia, double custoPorMilhaBasico) {
         this.nome = nome;
@@ -13,6 +16,7 @@ public class Navio {
         this.autonomia = autonomia;
         this.custoPorMilhaBasico = custoPorMilhaBasico;
         this.carga = null;
+        historico = new ArrayList<>();
     }
 
     public String getNome() {
@@ -53,6 +57,10 @@ public class Navio {
 
     public void setCarga(Carga carga) {
         this.carga = carga;
+    }
+
+    public void setHistorico(Carga carga) {
+        this.historico.add(carga);
     }
 
     @Override

@@ -1,18 +1,23 @@
 package src.view;
-import java.util.Queue;
+import java.util.*;
 
+import src.model.Carga;
 import src.model.Navio;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 public class CadastroNavio extends JPanel {
+    // Inner class que reordena lista de Navios
+    class OrderNavios implements Comparator<Navio> {
+        @Override
+        public int compare(Navio one, Navio second) {
+            return one.getNome().compareTo(second.getNome());
+        }
+    }
+
     private JTextField nomeTextField;
     private JTextField velocidadeTextField;
     private JTextField autonomiaTextField;
@@ -168,8 +173,28 @@ public class CadastroNavio extends JPanel {
         }
     }
 
-    public LinkedList<Navio> getNavios() {
-        return new LinkedList<>(navios.values());
+    public LinkedList<Navio> getNaviosDisponiveis() {
+        LinkedList<Navio> disponiveis = new LinkedList<>();
+
+        for (Navio n : navios.values()) {
+            if (n.getCarga() == null) {
+                disponiveis.add(n);
+            }
+        }
+        Collections.sort(disponiveis, new OrderNavios());
+        return disponiveis;
+    }
+
+    public LinkedList<Navio> getNaviosIndisponiveis() {
+        LinkedList<Navio> indisponiveis = new LinkedList<>();
+
+        for (Navio n : navios.values()) {
+            if (n.getCarga() != null) {
+                indisponiveis.add(n);
+            }
+        }
+        Collections.sort(indisponiveis, new OrderNavios());
+        return indisponiveis;
     }
 }
 

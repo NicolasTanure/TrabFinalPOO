@@ -7,9 +7,10 @@
     <list default="true" id="18d7ec8c-2dfe-43ec-ae22-2339f877bbd5" name="Changes" comment="dicionario das distancias adicionado">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TrabFinalPOO/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrabFinalPOO/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/collections/Portos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/collections/Portos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/CadastroPorto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CadastroPorto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Navio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Navio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CadastroNavio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CadastroNavio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/FreteCarga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/FreteCarga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Home.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Screen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +44,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/sofiasartori/Desktop/POO-TFinal/TrabFinalPOO",
+    "last_opened_file_path": "C:/Users/bianc/IdeaProjects/T3 - POO",
     "settings.editor.selected.configurable": "terminal"
   }
 }]]></component>

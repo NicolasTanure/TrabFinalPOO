@@ -25,6 +25,7 @@ public class FreteCarga extends JPanel {
     private Screen screen;
     private FilaEstoque fila;
     private LinkedList<Navio> navios;
+    private LinkedList<Navio> ocupados;
     private Carga current;
     private JButton fretar;
     private JButton voltar;
@@ -34,14 +35,27 @@ public class FreteCarga extends JPanel {
     private JLabel headerInformation;
     private JLabel information;
 
-    public FreteCarga(Screen screen, FilaEstoque fila, LinkedList<Navio> navios) {
+    public FreteCarga(Screen screen, FilaEstoque fila, LinkedList<Navio> navios, LinkedList<Navio> ocupados) {
         super(new GridLayout(7, 1));
         this.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
         this.screen = screen;
         this.fila = fila;
         this.navios = navios;
+        this.ocupados = ocupados;
         this.current = fila.getFirstCarga();
         createUIComponents();
+    }
+
+    public void setCurrent(Carga current) {
+        this.current = current;
+    }
+
+    public void setNavios(LinkedList<Navio> navios) {
+        this.navios = navios;
+    }
+
+    public LinkedList<Navio> getOcupados() {
+        return ocupados;
     }
 
     public void createUIComponents() {
@@ -116,86 +130,74 @@ public class FreteCarga extends JPanel {
     }
 
     private void fretarCargas() {
-        double preco = 0;
         Navio navio = null;
-
         boolean frete = false;
         String info = "";
 
         Map<Integer, Integer> destino = current.getDestino().getDistancia();
         int id = current.getOrigem().getId();
-        System.out.println(destino.containsKey(0));
-        int distancia = destino.get(id); // >>>> ERRO
+        int distancia = destino.get(id);
 
         if (!navios.isEmpty()) {
             for (Navio n : navios) {
-                double tempo = Math.ceil(distancia / n.getVelocidade()); // >>>> Onde dá a exceção
+                double tempo = Math.ceil(distancia / n.getVelocidade());
                 if (n.getAutonomia() >= distancia && tempo <= current.getTempoMaximo()) {
-                    if (n.getCarga() == null) {
-                        if (barato.isSelected()) {
-                            current.setPrioridade(Prioridade.BARARTO);
-                            current.setEstado(EstadoCarga.LOCADO);
-                            n.setCarga(current);
+                    if (barato.isSelected()) {
+                        current.setPrioridade(Prioridade.BARARTO);
+                        current.setEstado(EstadoCarga.LOCADO);
+                        n.setCarga(current);
+                        n.setHistorico(current);
+                        navio = n;
+                        navios.remove(n); // Remove o navio não mais disponível
+                        ocupados.add(n); // Cataloga como indisponível
 
-                            navio = n;
+                        frete = true;
+                        info = "Carga alocada!";
+                    } else if (rapido.isSelected()) {
+                        current.setPrioridade(Prioridade.RAPIDO);
+                        current.setEstado(EstadoCarga.LOCADO);
+                        n.setCarga(current);
+                        n.setHistorico(current);
+                        navio = n;
+                        navios.remove(n);
+                        ocupados.add(n);
 
-                            frete = true;
-                            info = "Carga alocada!";
-                        } else if (rapido.isSelected()) {
-                            current.setPrioridade(Prioridade.RAPIDO);
-                            current.setEstado(EstadoCarga.LOCADO);
-                            n.setCarga(current);
-
-                            navio = n;
-
-                            frete = true;
-                            info = "Carga alocada!";
-                        } else {
-                            JOptionPane.showMessageDialog(
-                                    this,
-                                    "Informe a prioridade do frete!",
-                                    "ERRO",
-                                    JOptionPane.ERROR_MESSAGE
-                            );
-                        }
+                        frete = true;
+                        info = "Carga alocada!";
                     } else {
-                        Carga c = fila.removeCarga();
-                        fila.addCarga(c);
-
-                        info = "Carga adicionada novamente na fila!";
+                        headerInformation.setForeground(Color.RED);
+                        headerInformation.setText("ERRO");
+                        information.setText("Selecione a prioridade do frete!");
                     }
                 } else {
-                    Carga c = fila.removeCarga();
-                    c.setEstado(EstadoCarga.CANCELADO);
-
-                    info = "Carga removida da fila, impossível transportar!";
+                    // Navios disponíveis incapazes de transportar, verifica nos indisponíveis
+                    info = verificaIndisponiveis(current, distancia);
                 }
             }
         } else {
-            info = "ERRO: Não há navios cadastrados!";
+            // Não há mais navios disponíveis, apenas indisponíveis
+            info = verificaIndisponiveis(current, distancia);
         }
 
         if (frete) { // Se foi possível fretar
-            preco = calculaFrete(navio, current);
+            double preco = calculaFrete(navio, current); // Calcula o frete
 
             headerInformation.setForeground(Color.GREEN);
             headerInformation.setText("CARGA ALOCADA");
-            information.setText("Carga em transporte..." + "Preço: " + preco); // >>>> Printa aqui o valor do frete
+            information.setText("Carga em transporte... " + "Preço: " + preco);
 
-
+            fila.removeCarga(); // Remove a carga cadastrada da fila
             if (!fila.getFila().isEmpty()) {
-                fila.removeCarga(); // Remove a carga cadastrada da fila
-                if(fila.getFirstCarga() == null) {
-                    dadosCarga.setText("");
-                }else {
-                    current = fila.getFirstCarga();
-                    dadosCarga.setText(current.toString()); // Atualiza as informações na tela
-                }
+                current = fila.getFirstCarga(); // Senão está vazia, atualiza as informações na tela
+                dadosCarga.setText(current.toString());
             } else {
                 dadosCarga.setText("");
-                headerInformation.setForeground(Color.RED);
-                headerInformation.setText("ERRO");
-                information.setText("Não há mais cargas a serem fretadas!");
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Não há mais cargas a serem fretadas!",
+                        "ATENÇÃO",
+                        JOptionPane.WARNING_MESSAGE
+                );
             }
         } else { // Senão foi
             headerInformation.setForeground(Color.RED);
@@ -204,7 +206,30 @@ public class FreteCarga extends JPanel {
         }
     }
 
-    public double calculaFrete(Navio navio, Carga carga ) {
+    public String verificaIndisponiveis(Carga current, int distancia) {
+        String info = "";
+        boolean adicionaFila = false;
+
+        for (Navio n : ocupados) {
+            double time = Math.ceil(distancia / n.getVelocidade());
+            if (n.getAutonomia() >= distancia && time <= current.getTempoMaximo()) {
+                Carga c = fila.removeCarga();
+                fila.addCarga(c);
+
+                adicionaFila = true;
+                info = "Carga adicionada novamente na fila. Sem navios disponíveis no momento!";
+            }
+        }
+        if (!adicionaFila) { // Nem mesmo os navios indisponíveis são capazes de transportar
+            Carga c = fila.removeCarga();
+            c.setEstado(EstadoCarga.CANCELADO);
+
+            info = "Carga cancelada. Sem navios capazes de transportar!";
+        }
+        return info;
+    }
+
+    public double calculaFrete(Navio navio, Carga carga) {
         double precoFinal = 0;
         double precoRegiao = 0;
         double precoPeso = 0;
@@ -213,37 +238,30 @@ public class FreteCarga extends JPanel {
         int idDestino = carga.getDestino().getId();
         int distancia = carga.getOrigem().getDistancia().get(idDestino);
 
-        //calcula o preco por prioridade
+        // Preço por prioridade
         if(carga.getPrioridade() == Prioridade.RAPIDO) {
-            precoPrioridade = distancia * (navio.getCustoPorMilhaBasico() *2);
+            precoPrioridade = distancia * (navio.getCustoPorMilhaBasico() * 2);
         }else {
             precoPrioridade = distancia * navio.getCustoPorMilhaBasico();
         }
 
-        //calcula o preco por regiao
+        // Preço por regiao
         if(carga.getOrigem().getPais().toLowerCase().equals("brasil") && carga.getDestino().getPais().toLowerCase().equals("brasil")) {
             precoRegiao = 10000;
         } else {
             precoRegiao = 50000;
         }
 
-        //calcula o preco por peso
+        // Preço por peso
         if(carga.getTipoCarga() instanceof Duravel) {
             Duravel duravel = (Duravel) carga.getTipoCarga();
             precoPeso = carga.getPeso() * 1.5 + (carga.getValorDeclarado() * (duravel.getImpostoIndustrializado()/100));
         } else {
             precoPeso = carga.getPeso() * 2;
         }
-        System.out.println("custo milhas: "+navio.getCustoPorMilhaBasico());
-        System.out.println("velocidade: " + navio.getVelocidade());
-        System.out.println("peso:" +carga.getPeso());
-        System.out.println("preco regiao: " + precoRegiao);
-        System.out.println("preco peso: "+ precoPeso);
-        System.out.println("preco prioridade: " + precoPrioridade);
 
         precoFinal = precoRegiao + precoPeso + precoPrioridade;
         return precoFinal;
-
     }
 }
 

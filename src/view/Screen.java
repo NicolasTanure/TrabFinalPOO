@@ -11,6 +11,7 @@ public class Screen extends JFrame {
     private CadastroCarga carga;
     private ConsultarCarga consulta;
     private FreteCarga freteCarga;
+    private DadosIniciais dadosIniciais;
 
     public Screen() {
         super("Sistema ACMEHandelsschifffahrtsgesellschaft");
@@ -27,6 +28,7 @@ public class Screen extends JFrame {
         porto = new CadastroPorto(this);
         cliente = new CadastroCliente(this);
         carga = new CadastroCarga(this,tipo.getTipos(),porto.getPortos(),cliente.getClientes());
+        dadosIniciais = new DadosIniciais(this);
     }
 
     /**
@@ -89,7 +91,7 @@ public class Screen extends JFrame {
                 break;
             case 7:
                 if (!carga.getFila().getFila().isEmpty()) {
-                    freteCarga = new FreteCarga(this,carga.getFila(),navio.getNavios());
+                    freteCarga = new FreteCarga(this,carga.getFila(),navio.getNaviosDisponiveis(),navio.getNaviosIndisponiveis());
                     this.setContentPane(freteCarga);
                     this.pack();
                     this.setSize(650,450);
@@ -103,6 +105,8 @@ public class Screen extends JFrame {
                     );
                 }
                 break;
+            case 8:
+
         }
     }
 }
